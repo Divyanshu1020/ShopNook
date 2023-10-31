@@ -1,0 +1,14 @@
+.home{
+    
+}
+.home-main-container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 640px){
+    .home-main-container{
+        max-width: calc(100% - 20px);
+        margin: 0 auto;
+    }
+}

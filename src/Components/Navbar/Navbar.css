@@ -1,0 +1,137 @@
+.navbar{
+    width: 100%;
+    background-color:#212121;
+    color: white;
+    
+}
+.sticky{
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    transform: translateY(-4rem) ;
+    animation: navbarScroll 0.3s ease forwards;
+}
+@keyframes navbarScroll {
+    0%{
+        transform: translateY(-4rem) ;
+    }
+    100%{
+        transform: translateY(0) ;
+    }
+}
+.navbar-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 4rem;
+}
+.left-link{
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    font-size: 1.2rem;
+
+    .left-link-li{
+        cursor: pointer;
+
+        & a {
+            color: white;
+            text-decoration: none;
+        }
+    } 
+}
+
+.logo{
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+   
+    margin-left: -8rem ;
+}
+.right{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.right-icon{
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.cart-icon{
+ display: flex;
+  position: relative;  
+  align-items: center;
+  cursor: pointer;
+}
+.cart-icon span {
+    min-width: 20px;
+    text-align: center;
+    background-color: #8e2de2;
+    padding: 2.5px;
+    position: absolute;
+    top: -5px;
+    right: -12px;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 10px;
+}
+@media only screen and (max-width: 640px){
+    .navbar{
+        width: 100%;
+        color: white;
+        
+    }
+
+}
+@media only screen and (max-width: 768px) {
+    .navbar{
+        width: 100%;
+        color: white;
+    }
+    .navbar-content{
+    
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 3.5rem;
+    }
+    .left{
+        display: none;
+    }
+    .left-link{
+        display: none;
+        list-style: none;
+        gap: 1rem;
+        font-size: 1.2rem;
+    }
+    .logo{
+        font-size: 2rem;
+        font-weight: 500;
+        cursor: pointer;
+       
+        margin-left: 0 ;
+    }
+
+    
+}
+@media screen and (max-width: 1024px) and (min-width: 768px){
+    .navbar{
+        width: 100%;
+        color: white;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

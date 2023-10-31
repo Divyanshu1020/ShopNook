@@ -1,0 +1,24 @@
+.page-category{
+    max-width: 1200px;
+    margin: 75px auto;
+}
+.page-category-container{
+    margin: 0 auto;
+}
+.page-category-container .products{
+    margin: 34px 0;
+}
+.page-header{
+    font-size: 34px;
+}
+@media only screen and (max-width: 640px){
+    .page-category{
+        margin: 25px 0;
+    }
+    .page-category-container{
+        max-width: calc(100% - 20px);
+    }
+    .page-header{
+        font-size: 24px;
+    }
+}

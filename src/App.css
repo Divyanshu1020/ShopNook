@@ -1,0 +1,10 @@
+.App{
+    min-width: 100%;
+    align-items: center;
+}
+.layout{
+    min-width: 100%;
+}
+.context{
+    width: 100%;
+}

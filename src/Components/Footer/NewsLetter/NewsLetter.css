@@ -1,0 +1,88 @@
+.newsletter{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: url('../../../assets/endless-constellation.svg'); */
+    background-color: #ffffff;
+background-image: linear-gradient(180deg, #ffffff 0%, #B5FFFC 100%);
+
+}
+.newsletter-container{
+    width: 100%;
+    text-align: center;
+    cursor: default;
+}
+.newsletter-container h4{
+    
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
+}
+.newsletter-container h3{
+    margin-bottom: 20px;
+    font-size: 28px;
+    line-height: 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 0 30px;
+
+}
+.newsletter-container p{
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.newsletter-form {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 30px;
+
+    gap: 1rem;
+    
+    
+}
+.newsletter-form input{
+    width: 300px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0 12px;
+    font-size: 16px;
+    outline: none;
+    
+}
+.newsletter-form button{
+ outline: 0;
+ border: 0;
+ height: 40px;
+ width: 100px;
+ cursor: pointer;
+ font-size: 16px;
+ color: white;
+ background-color: #8e2dec;
+}
+.newsletter-form button:hover{
+    opacity: 0.8;
+}
+.newsletter-socialIcons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.newsletter-socialIcons .icon {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.8) ;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+

@@ -1,0 +1,34 @@
+.category{
+    width: 100%;
+    margin: 50px 0;
+}
+.category-items{
+    display: flex;
+    /* flex-flow: wrap; */
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.category-item{
+    background-color: black;
+    width: calc(25% - 10px);
+    cursor: pointer;
+    overflow: hidden;
+}
+.category-item img {
+   width: 100%;
+   display: block;
+   transition: all ease 0.3s;
+
+}
+.category-item img:hover{
+    transform: scale(1.2);
+}
+@media only screen and (max-width: 640px){
+    .category{
+        margin: 20px 0;
+    }
+    .category-item{
+        width: calc(50% - 5px);
+    }
+    
+}
