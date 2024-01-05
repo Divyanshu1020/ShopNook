@@ -2,6 +2,12 @@
     background-image: linear-gradient( 108.7deg,  rgba(221,22,224,1) 11%, rgba(111,22,190,1) 88.2% );
     height: calc(100vh - 4rem);
     cursor: default;
+    margin: 1rem;
+    border-radius: 1rem;
+    width: calc(100% - 2rem);
+    /* max-width: 1200px; */
+    margin: 1rem auto;
+
 }
 .banner-container{
     height: 100%;
@@ -50,6 +56,7 @@
     color: white;
     cursor: pointer;
     padding: 10px 20px;
+    border-radius: 1rem;
 }
 .banner-btn .v2{
  background-color: white;

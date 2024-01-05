@@ -1,5 +1,7 @@
 .newsletter{
-    width: 100%;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    border-radius: 1rem;
     height: 400px;
     display: flex;
     align-items: center;
@@ -41,7 +43,6 @@ background-image: linear-gradient(180deg, #ffffff 0%, #B5FFFC 100%);
     justify-content: center;
     width: 100%;
     padding: 0 30px;
-
     gap: 1rem;
     
     
@@ -50,6 +51,7 @@ background-image: linear-gradient(180deg, #ffffff 0%, #B5FFFC 100%);
     width: 300px;
     height: 40px;
     border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
     padding: 0 12px;
     font-size: 16px;
     outline: none;
@@ -64,6 +66,7 @@ background-image: linear-gradient(180deg, #ffffff 0%, #B5FFFC 100%);
  font-size: 16px;
  color: white;
  background-color: #8e2dec;
+ border-radius: 1rem;
 }
 .newsletter-form button:hover{
     opacity: 0.8;

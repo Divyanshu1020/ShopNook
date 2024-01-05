@@ -8,10 +8,10 @@ export default function Product() {
             <img src={card} alt="" />
         </div>
         <div className="card-details">
-            <div className="product-name">Headkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkphone</div>
-            <div className="product-price">&#8377; 9500</div>
+            <div className="product-name">Headphone</div>
         </div>
-
+        <div className="product-price">&#8377; 9500</div>
+        <button className='product-button'>Add To Cart</button>
     </div>
   )
 }

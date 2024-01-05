@@ -1,7 +1,9 @@
 .footer{
  
-    width: 100%;
-    background-color: beige;
+    width: calc(100% - 2rem);
+    border-radius: 1rem;
+    margin: 1rem;
+    background-color: #e4ebf1;
 
     .footer-container{
         padding: 50px;

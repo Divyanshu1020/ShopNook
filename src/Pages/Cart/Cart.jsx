@@ -1,5 +1,6 @@
 import React from 'react'
 import { MdClose } from 'react-icons/md'
+import {BsCartX} from 'react-icons/bs'
 import CartItems from './CartItems/CartItems'
 import styled from 'styled-components'
 export default function Cart({ setCartShow }) {
@@ -19,10 +20,10 @@ export default function Cart({ setCartShow }) {
         </Header>
 
         {/* When cart is emitty then this will show */}
-        {/* <Empty className="mt-cart">
+        <Empty className="mt-cart">
           <BsCartX/>
           <span className="text">Your Cart is Empty</span>
-        </Empty> */}
+        </Empty>
 
         <CartItems />
 

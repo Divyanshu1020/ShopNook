@@ -1,6 +1,10 @@
 .App{
     min-width: 100%;
     align-items: center;
+    
+}
+body{
+    background-color: rgb(243, 244, 247);;
 }
 .layout{
     min-width: 100%;

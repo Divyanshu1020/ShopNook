@@ -1,15 +1,19 @@
 .category{
-    width: 100%;
-    margin: 50px 0;
+    width: calc(100% );
+    /* max-width: 1200px; */
+    /* margin: 1rem ; */
 }
 .category-items{
+    /* max-width: 1200px; */
     display: flex;
     /* flex-flow: wrap; */
     flex-wrap: wrap;
-    gap: 10px;
+
+   justify-content: space-between;
 }
 .category-item{
     background-color: black;
+    border-radius: 1rem;
     width: calc(25% - 10px);
     cursor: pointer;
     overflow: hidden;
