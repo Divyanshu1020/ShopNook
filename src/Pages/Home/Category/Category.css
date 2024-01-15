@@ -14,9 +14,10 @@
 .category-item{
     background-color: black;
     border-radius: 1rem;
-    width: calc(25% - 10px);
+    width: calc(25% - 1rem);
     cursor: pointer;
     overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 0px;
 }
 .category-item img {
    width: 100%;
@@ -29,10 +30,18 @@
 }
 @media only screen and (max-width: 640px){
     .category{
-        margin: 20px 0;
+        margin: 0.5rem 0;
     }
     .category-item{
-        width: calc(50% - 5px);
+        width: calc(50% - 0.5rem);
+    }
+    .category-items{
+        /* max-width: 1200px; */
+        display: flex;
+        /* flex-flow: wrap; */
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+       gap: 0.5rem;
     }
     
 }

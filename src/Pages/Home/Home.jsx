@@ -5,6 +5,8 @@ import Layout from '../../Components/Layout/Layout'
 import Products from '../Products/Products'
 import Category from './Category/Category'
 import './Home.css'
+import DFilter from './Filter/DFilter'
+import MFilter from './Filter/MFilter'
 
 
 export default function Home() {
@@ -16,7 +18,12 @@ export default function Home() {
         <Banner />
         <div className="home-main-container">
           <Category />
+          
+          <div className='home-products-container'>
+          
+          <DFilter/>
           <Products headLineBlock={false} headLine={"Popular Product"} />
+          </div>
         </div>
       </div>
     </Layout>

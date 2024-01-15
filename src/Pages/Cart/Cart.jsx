@@ -65,6 +65,7 @@ const Main_Cart = styled.div`
   width: 340px;
   position: relative;
   display: flex;
+  border : 1px solid rgb(209, 214, 224);
   /* justify-content: center; */
   flex-direction: column;
   transform: translateX(100%);

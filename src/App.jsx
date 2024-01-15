@@ -4,6 +4,7 @@ import './App.css'
 
 //* services
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import {UserProvider} from '../src/context/user.context.jsx'
 
 
 //* Pages
@@ -18,7 +19,7 @@ import SingleProduct from './Pages/SingleProduct/SingleProduct'
 
 import Login from './Pages/Login/Login'
 import Signup from './Pages/SignUp/Signup'
-import Layout from './Components/Layout/Layout'
+
 
 
 
@@ -30,14 +31,14 @@ function App() {
 
   return (
     <div className="App">
-
+      <UserProvider>
       <Router>
   
 
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/order' element={<Order />} />
-          <Route path='/category' element={<Category />} />
+          <Route path='/category/:id' element={<Category />} />
           <Route path='/product/:id' element={<SingleProduct />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/*' element={<NoPage />} />
@@ -46,6 +47,7 @@ function App() {
         </Routes >
 
       </Router>
+      </UserProvider>
 
     </div>
   )

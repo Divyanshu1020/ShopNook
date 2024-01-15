@@ -1,57 +1,93 @@
 // @ts-ignore
-import React, { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import axios from 'axios';
+import React, { useRef, useState } from 'react';
+import { Link, json, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { useUser } from '../../context/user.context';
 
 export default function Login() {
-    const email  = useRef('');
-    const password  = useRef('');
-    
-    function loginHandler(e){
+    const [errorMessage, seteErrorMessage] = useState('');
+    const [buttonDisable, setButtonDisable] = useState(false);
+    const email = useRef('');
+    const password = useRef('');
+    const navigat = useNavigate();
+    const [user, setUser] = useUser();
+
+    async function loginHandler(e) {
         e.preventDefault();
+        const em = email?.current.value;
+        const pass = password?.current.value;
+        console.log(em, pass);
+        if(!(em || pass)){
+            seteErrorMessage('Please enter a valid email and password');
+        }
+
+        setButtonDisable(true);
+
+        try {
+            await axios
+            .post('http://localhost:5000/api/v1/users/login', {email : em , password : pass})
+            .then((response) => {
+                setUser({
+                    user : response.data.user,
+                    JWT : response.data.token,
+                })
+                setButtonDisable(false)
+                console.log(response.data);
+
+            })
+            
+        } catch (error) {
+            console.log(error);
+
+        }
+        setButtonDisable(false)
+
         // @ts-ignore
-        console.log(email?.current.value, password?.current.value);
+        
     }
     return (
         <Background>
-        <form onSubmit={(e)=>{loginHandler(e)}}>
-            <Input className='input'>
-                <h1 className="input-hader">Login</h1>
-                <Input_Container className="input-container">
-                    {/* email input */}
-                    <Input_Group className="input-group">
-                        <input
-                            // @ts-ignore
-                            ref={email}
-                            className='input'
-                            type="email"
-                            placeholder='Email'
-                            
-                        />
-                        <label className='label'>Email</label>
-                    </Input_Group>
+            <form onSubmit={(e) => { loginHandler(e) }}>
+                <Input className='input'>
+                    <h1 className="input-hader">Login</h1>
+                    <Input_Container className="input-container">
+                        {/* email input */}
+                        <Input_Group className="input-group">
+                            <input
+                                // @ts-ignore
+                                ref={email}
+                                className='input'
+                                type="text"
+                                placeholder='Email'
 
-                    <Input_Group className="input-group">
-                        <input
-                            className='input'
-                            type="password"
-                            placeholder='Password'
-                            // @ts-ignore
-                            ref={password}
-                        />
-                        <label className='label'>Email</label>
-                    </Input_Group>
-                    <button
-                        className="sign"
-                        onClick={() =>{loginHandler()}}
-                        type='submit'
-                        // onSubmit={() =>{loginHandler()}}
-                        
-                    >Login</button>
-                    <p className="linkp">Not registered? <Link to={'/signin'}>Creat account</Link></p>
-                </Input_Container>
-            </Input>
+                            />
+                            <label className='label'>Email</label>
+                        </Input_Group>
+
+                        <Input_Group className="input-group">
+                            <input
+                                className='input'
+                                type="password"
+                                placeholder='Password'
+                                // @ts-ignore
+                                ref={password}
+                            />
+                            <label className='label'>Email</label>
+                        </Input_Group>
+                        <button
+                            className="sign"
+                            onClick={() => { loginHandler() }}
+                            type='submit'
+                            disabled = {buttonDisable}
+
+                        >Login</button>
+                        <button onClick={() => { navigat('/') }}>skip</button>
+                        <p className="linkp">Not registered? <Link to={'/signup'}>Creat account</Link></p>
+                    </Input_Container>
+                </Input>
             </form>
+            <pre>{JSON.stringify(user,null,4)}</pre>
         </Background>
     )
 }

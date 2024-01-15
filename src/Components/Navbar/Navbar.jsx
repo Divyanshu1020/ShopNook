@@ -38,7 +38,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar ${navbarScroll ? "sticky" : ''}`} >
+      <div className={`nav-container ${navbarScroll ? "sticky" : ''}`}>
+      <nav className={`navbar `} >
         <div className="navbar-content">
           <div className="left">
             <ul className='left-link'>
@@ -48,7 +49,7 @@ export default function Navbar() {
               Categories
                   <div className="dropdown-content" >
                   
-                    <Link to= '/category' >
+                    <Link to= '/category/Bluetooth Speaker' >
                       Bluetooth Speaker
                     </Link>
                     <Link to= '/category' >
@@ -85,6 +86,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      </div>
 
       {cartShow && <Cart setCartShow={setCartShow} />}
 

@@ -2,6 +2,7 @@
     min-width: 100%;
     align-items: center;
     
+    
 }
 body{
     background-color: rgb(243, 244, 247);;
@@ -12,3 +13,5 @@ body{
 .context{
     width: 100%;
 }
+
+/* box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 3px 14px 3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 14px; */
