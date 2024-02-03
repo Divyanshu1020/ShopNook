@@ -1,7 +1,7 @@
 .footer{
  
     width: calc(100% - 2rem);
-    border-radius: 1rem;
+    border-radius: var(--borderRadius);
     margin: 1rem;
     background-color: #e4ebf1;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px 0px;
@@ -64,6 +64,12 @@
         flex-flow: wrap;
         justify-content: space-between;
         gap: 20px;
+    }
+}
+@media only screen and (max-width: 640px){
+    .footer{
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
     }
 }
 @media only screen and (max-width: 1024px)and (min-width: 720px){

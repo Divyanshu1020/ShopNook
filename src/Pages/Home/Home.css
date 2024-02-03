@@ -3,8 +3,7 @@
 }
 
 .home-products-container{
-    height: 90vh;
-    border-radius: 1rem;
+    height: 815px;
     display: flex;
     align-items: start;
     /* min-height: 80vh; */
@@ -27,5 +26,7 @@
         margin:  0.5rem auto;
         gap: 0.5rem;
         flex-direction: column;
+        overflow: hidden;
+        height: 100%;
     }   
 }

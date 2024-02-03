@@ -1,31 +1,51 @@
-import React from 'react';
-import { FaCartPlus, FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-import src from '../../assets/products/watch-prod-1.webp';
+import React, { useEffect, useState } from 'react';
 import './SingleProduct.css';
-import RelatedProduct from './RelatedProduct/RelatedProduct';
+//* Components
+import Layout from '../../Components/Layout/Layout';
+//*services
+import { FaCartPlus, FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { useParams } from 'react-router-dom';
+import ProductData from '../../../data.json';
 
 
 export default function SingleProduct() {
+    const [product, setProduct] = useState({})
+    const [price, setPrice] = useState();
+    const { id } = useParams();
+    useEffect(() => {
+        const src = ProductData.find(product => product.id === Number(id));
+        setProduct(src)
+        const formattedPrice = src.price.toLocaleString('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          });
+        setPrice(formattedPrice)
+    }, [])
+
     return (
-        <div className='singleProduct-page'>
-            <div className="sp-container">
+        <Layout>
+            <div className='singleProduct-page'>
                 <div className='sp-container-main'>
                     <div className="sp-container-left">
-                        <img src={src} alt="" />
+                        <img src={`${product.thumbnail}`} alt="" />
                     </div>
+                    
                     <div className="sp-container-right">
-                        <div className="name">Headphone</div>
-                        <div className="price">&#8377; 9500</div>
-                        <div className="des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas distinctio quos reiciendis impedit accusantium molestias ad fuga cum dolores qui! Dolore rem delectus optio ex facere aperiam magni nulla! Quis! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi, saepe earum. Repellendus, eos. Ipsum ut doloremque molestiae eaque perferendis vero sint consectetur officia hic autem possimus saepesectetur adipisicing elit. Excepturi rem accusamus dolor voluptatum voluptas laudantium ut in, amet sed consequuntur facilis aut perferendis eius possimus. Iste autem totates deleniti et debitis unde? Quae dolorem exercitationem vitae voluptatibus. </div>
-                        <div className="cart-button">
-                            <div className="quantity-button">
-                                <span>-</span>
-                                <span>1</span>
-                                <span>+</span>
-                            </div>
-                            <button className='addToCart'><FaCartPlus />  ADD TO CART</button>
+                        <div className="name">{`${product.description}`}</div>
+                        <div className="price"> {`${price}`}</div>
+                        
+                        <div className="des">
+                            {<ul>
+                                {product.aboutItem?.map((line, index)=>(
+                                    <li key={index}>{line}</li>
+                                ))}
+                            </ul>}
+                            
+                            
                         </div>
-                        <span className="divider"></span>
+                        <div role='separator' className='separator'></div>
                         <div className="info-item">
                             <span className="bold">Category: <span>headphone</span></span>
                             <span className="bold">
@@ -40,11 +60,20 @@ export default function SingleProduct() {
                         </div>
                     </div>
                 </div>
-                <div className="sp-container-bottom">
-                    <RelatedProduct/>
-                </div>
+
+                
+
             </div>
-        </div>
+
+            <div className="cart-button">
+                            <div className="quantity-button">
+                                <span>-</span>
+                                <span>1</span>
+                                <span>+</span>
+                            </div>
+                            <button className='addToCart'><FaCartPlus />  ADD TO CART</button>
+                        </div>
+        </Layout>
     )
 }
 

@@ -12,14 +12,12 @@ display: none;
     @media only screen and (max-width: 640px){
         display: block;
         border-radius:1rem;
-    padding: 1rem;
-    width: 100%;
-    height: 200px;
-   width: 100%;
-    /* margin: 1rem; */
-    position: sticky;
-    top: 0;
-    background-color: white;
+        padding: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 0px;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        background-color: white;
     }
     
 

@@ -9,3 +9,8 @@
     font-family: 'Cabin', sans-serif;
     scroll-behavior: smooth;
 }
+
+:root{
+
+  --borderRadius : 0.7rem
+}

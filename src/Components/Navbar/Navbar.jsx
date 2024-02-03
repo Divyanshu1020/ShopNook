@@ -1,4 +1,4 @@
-import React, { useEffect,  useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
@@ -13,14 +13,22 @@ import Cart from '../../Pages/Cart/Cart';
 import Search from '../../Pages/Search/Search';
 import Menu from './Menu/Menu';
 
+// context
+import { useCart } from '../../context/cart.context';
+import { useUser } from '../../context/user.context';
+
+
 
 export default function Navbar() {
 
   const [navbarScroll, setNavbarScroll] = useState(false)
-  const [cartShow,     setCartShow] = useState(false)
+  const [cartShow, setCartShow] = useState(false)
   const [searchShow, setSearchShow] = useState(false);
   const [menuShow, setMenuShow] = useState(false)
-  
+ 
+  // const { cart } = useCart()
+  const { user} = useUser()
+
   const navigat = useNavigate();
 
   const navbarScrollHandler = () => {
@@ -32,60 +40,78 @@ export default function Navbar() {
     window.addEventListener('scroll', navbarScrollHandler)
   }, [])
 
- const navigation =()=>{
-  navigat('/category')
-}
+  const navigation = () => {
+    navigat('/category')
+  }
 
   return (
     <>
       <div className={`nav-container ${navbarScroll ? "sticky" : ''}`}>
-      <nav className={`navbar `} >
-        <div className="navbar-content">
-          <div className="left">
-            <ul className='left-link'>
-              <li className='left-link-li'><Link to='/'>Home</Link></li>
-              <li className='left-link-li' onClick={()=> navigation()}>About</li>
-              <li className='left-link-li dropdown'>
-              Categories
+        <nav className={`navbar `} >
+          <div className="navbar-content">
+            <div className="left">
+              <ul className='left-link'>
+                <li className='left-link-li'><Link to='/'>Home</Link></li>
+                <li className='left-link-li' onClick={() => navigation()}>About</li>
+                <li className='left-link-li dropdown'>
+                  Categories
                   <div className="dropdown-content" >
-                  
-                    <Link to= '/category/Bluetooth Speaker' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to= '/category' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to= '/category' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to= '/category' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to= '/category' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to= '/category' >
-                      Bluetooth Speaker
-                    </Link>
-                    
-                  </div>
-              </li>
-            </ul>
-          </div>
-          <div className="logo">ShopNook</div>
-          <div className="right">
-            <ImSearch className='right-icon' onClick={() => setSearchShow(true)} />
-            <BiLike className='right-icon' />
-            <span className='cart-icon' onClick={() => setCartShow(true)}>
-              <BiCart className='right-icon' />
-              <span>5</span>
-            </span>
-            <FaRegUser className='right-icon' />
-            <HiOutlineQueueList className='right-icon' onClick={() => setMenuShow(true)} />
 
+                    <Link to='/category/Bluetooth Speaker' >
+                      Bluetooth Speaker
+                    </Link>
+                    <Link to='/category' >
+                      Bluetooth Speaker
+                    </Link>
+                    <Link to='/category' >
+                      Bluetooth Speaker
+                    </Link>
+                    <Link to='/category' >
+                      Bluetooth Speaker
+                    </Link>
+                    <Link to='/category' >
+                      Bluetooth Speaker
+                    </Link>
+                    <Link to='/category' >
+                      Bluetooth Speaker
+                    </Link>
+
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="logo">ShopNook</div>
+            <div className="right">
+
+              <ImSearch
+                className='right-icon'
+                onClick={() => setSearchShow(true)} />
+
+              {user ?
+                 
+                (<>
+                  <BiLike className='right-icon' />
+                  <span className='cart-icon' onClick={() => setCartShow(true)}>
+                    <BiCart className='right-icon' />
+                    <span>{0}</span>
+                  </span>
+                  <FaRegUser className='right-icon' />
+                  <HiOutlineQueueList
+                    className='right-icon'
+                    onClick={() => setMenuShow(true)} />
+                </>)
+                : (
+                  <>
+                    <Link to='/login'>Login</Link>
+                    
+                    <Link to='/signup'> <button className='SingUp'>SignUp</button> </Link>
+                  </>
+                )
+              }
+
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
       </div>
 
       {cartShow && <Cart setCartShow={setCartShow} />}

@@ -3,7 +3,7 @@
     height: calc(480px - 4rem);
     cursor: default;
     margin: 1rem;
-    border-radius: 1rem;
+    border-radius: var(--borderRadius);
     width: calc(100% - 2rem);
     /* max-width: 1200px; */
     margin: 0 1rem auto;
@@ -84,7 +84,7 @@
         height: calc(70vh - 4rem);
         cursor: default;
         /* margin: 1rem; */
-        border-radius: 1rem;
+        border-radius: border-radius;
         width: calc(100% - 1rem);
         /* max-width: 1200px; */
         margin: 0 0.5rem auto ;

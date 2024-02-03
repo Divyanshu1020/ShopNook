@@ -1,7 +1,7 @@
 .newsletter{
     width: calc(100% - 2rem);
     margin: 1rem;
-    border-radius: 1rem;
+    border-radius: var(--borderRadius);
     height: 400px;
     display: flex;
     align-items: center;
@@ -90,4 +90,9 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px 0px;
     justify-content: center;
     border-radius: 50%;
 }
-
+@media only screen and (max-width: 640px){
+    .newsletter{
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
+    }
+}

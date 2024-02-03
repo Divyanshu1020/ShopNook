@@ -18,6 +18,8 @@ export default function Category() {
           <img src={'https://res.cloudinary.com/dnq2kbsta/image/upload/v1704325382/assets/category/aundjzmgmitr8bam0drc.jpg'} alt="" />
         </div>
       </div>
+      
+
     </div>
   )
 }

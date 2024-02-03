@@ -1,9 +1,21 @@
-import React from 'react'
+import PropTypes from 'prop-types'
+import React, { useEffect, useRef, useState } from 'react'
+import { BsCartX } from 'react-icons/bs'
 import { MdClose } from 'react-icons/md'
-import {BsCartX} from 'react-icons/bs'
-import CartItems from './CartItems/CartItems'
 import styled from 'styled-components'
+import { useCart } from '../../context/cart.context'
+import CartItems from './CartItems/CartItems'
+
+Cart.propTypes = {
+  setCartShow: PropTypes.func.isRequired
+}
 export default function Cart({ setCartShow }) {
+  const { cart } = useCart()
+
+
+
+
+
 
   return (
     <CartPage className='cart'>
@@ -18,28 +30,34 @@ export default function Cart({ setCartShow }) {
             <span className="text">Close</span>
           </span>
         </Header>
-
-        {/* When cart is emitty then this will show */}
-        <Empty className="mt-cart">
-          <BsCartX/>
-          <span className="text">Your Cart is Empty</span>
-        </Empty>
-
-        <CartItems />
-
-        <Footer className="cart-footer">
-          <div className="subtotal">
-            <span className="total">Subtotal:</span>
-            <span className="total price">&#8377; 9999</span>
-          </div>
-          <div className="checkout">
-            <button className="text">Checkout</button>
-          </div>
-        </Footer>
+        {cart.length === 0 ?
+          (
+            <Empty className="mt-cart">
+              <BsCartX />
+              <span className="text">Your Cart is Empty</span>
+            </Empty>
+          ) :
+          (
+            <>
+              <CartItems />
+              <Footer className="cart-footer">
+                <div className="subtotal">
+                  <span className="total">Subtotal:</span>
+                  <span className="total price">&#8377; 9999</span>
+                </div>
+                <div className="checkout">
+                  <button className="text">Checkout</button>
+                </div>
+              </Footer>
+            </>
+          )
+        }
       </Main_Cart>
     </CartPage>
   )
 }
+
+
 
 const CartPage = styled.div`
   position: fixed;

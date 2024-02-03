@@ -3,24 +3,27 @@ import { MdClose } from 'react-icons/md'
 import styled from 'styled-components'
 import card from '../../../../assets/products/earbuds-prod-1.webp'
 
-export default function CartItem() {
+export default function CartItem({title, thumbnail, quantity, price ,deleteCartItems, id}) {
   return (
     <Cartitem>
       <div className="cartItem-img">
-        <img src={card} alt="" />
+        <img src={thumbnail} alt="" />
       </div>
       <div className="cartItem-details">
-        <span className='cartItem-name'>Hadephon</span>
-        <MdClose className='close-btn' />
+        <span className='cartItem-name'>{title}</span>
+        <MdClose 
+          className='close-btn' 
+          onClick={()=>deleteCartItems(id)}
+          />
         <QuantityButton>
           <span>-</span>
-          <span>1</span>
+          <span>{quantity}</span>
           <span>+</span>
         </QuantityButton>
         <div className="text">
           <span>1</span>
           <span>X</span>
-          <span className="cartItem-price">&#8377; 9500</span>
+          <span className="cartItem-price">&#8377; {price}</span>
         </div>
       </div>
     </Cartitem>
@@ -65,6 +68,16 @@ const Cartitem = styled.div`
       padding-right: 25px;
       margin-bottom: 10px;
     }
+    .close-btn{
+      cursor: pointer;
+      font-size: 20px;
+      color: rgb(255, 117, 117);
+      transition: all ease 0.5s;
+      &:hover{
+        color: #ff0000;
+        transform: scale(1.3);
+      }
+    }
 
     svg {
       position: absolute;
@@ -83,7 +96,7 @@ const Cartitem = styled.div`
       }
     }
   }
-}
+
 `
 const QuantityButton = styled.div`
   display: flex;
