@@ -20,7 +20,7 @@ export default function ListComponent(props) {
         if(e.key === 'Enter' || e.keyCode === 13){
             e.preventDefault();
             setProductQuantity(userProductQuantityInput)
-        }//add a feature in cart for user 
+        }
     }
     return (
         <Container>
