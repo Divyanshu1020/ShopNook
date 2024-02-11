@@ -1,15 +1,14 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProductDetail.css';
-
-//*services
+//* Icons 
 import { BiLike } from 'react-icons/bi';
 import { FaCartPlus, FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+
 import { useParams } from 'react-router-dom';
 import { convertInPricrFormate } from '../../helper/convertInPriceFormat.js'
 import ProductData from '../../../data.json';
 import { useCart } from '../../context/cart.context.jsx';
-import axios from 'axios';
-import { createGlobalStyle } from 'styled-components';
+
 
 
 
@@ -21,19 +20,15 @@ export default function ProductDetail() {
 
 
     const addToCart = () => {
-        console.log('from ditials');
         const newItem = {
             id,
             title: product.title,
-            description : product.description,
-            price : product.price,
+            description: product.description,
+            price: product.price,
             quantity: 1,
             thumbnail: product.thumbnail,
         }
         const existingProduct = cart.find(product => (product?.id === id));
-        // const existingProduct = cart.map(
-        //   item => ( item.id == id? true : false))
-        // console.log(existingProduct);
 
         if (existingProduct) {
             setCart(preProducts => (
@@ -53,9 +48,9 @@ export default function ProductDetail() {
     useEffect(() => {
         window.scrollTo(0, 0,);
         const src = ProductData.find(product => product.id === Number(id));
-        const formattedPrice = convertInPricrFormate(src?.price)
-        setProduct(src)
-        setPrice(formattedPrice)
+        const formattedPrice = convertInPricrFormate(src?.price);
+        setProduct(src);
+        setPrice(formattedPrice);
 
     }, [id])
 

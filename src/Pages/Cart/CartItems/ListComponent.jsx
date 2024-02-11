@@ -2,14 +2,26 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
+import { convertInPricrFormate } from '../../../helper/convertInPriceFormat';
 
-export default function ListComponent({ title, price, thumbnail, quantity }) {
-    const [total,setTotal] = useState(0)
+export default function ListComponent(props) {
+    const { title, price, thumbnail, quantity, deleteCartItems, id } = props;
+    const [total, setTotal] = useState(0)
+    const [productQuantity, setProductQuantity] = useState(quantity)
+    const [userProductQuantityInput, setUserProductQuantityInput] = useState(quantity)
 
-    useEffect(()=>{
-        const total = quantity * price;
-        setTotal(total)
-    },[quantity,price])
+    useEffect(() => {
+        const priceFormate = convertInPricrFormate(productQuantity * price);
+        setTotal(priceFormate)
+    }, [productQuantity,price])
+
+    //* Handler on submite product quantity
+    const submiteProductQuantity=(e)=>{
+        if(e.key === 'Enter' || e.keyCode === 13){
+            e.preventDefault();
+            setProductQuantity(userProductQuantityInput)
+        }//add a feature in cart for user 
+    }
     return (
         <Container>
             <Lift>
@@ -24,7 +36,13 @@ export default function ListComponent({ title, price, thumbnail, quantity }) {
             <Right>
                 <div className="quantity ">
                     <span><FaMinus /></span>
-                    <input type="text" value={quantity} />
+                    <input
+                        type="text"
+                        value={userProductQuantityInput}
+                        onChange={(e) => { setUserProductQuantityInput(e.target.value) }}
+                        onBlur={() => { setUserProductQuantityInput(productQuantity)}}
+                        onKeyDown={(e)=>{submiteProductQuantity(e)}}
+                    />
                     <span><FaPlus /></span>
                 </div>
 
@@ -32,7 +50,7 @@ export default function ListComponent({ title, price, thumbnail, quantity }) {
                     <span >{total}</span>
                 </div>
                 <div>
-                    <MdDelete className='delete' />
+                    <MdDelete className='delete' onClick={() => { deleteCartItems(id) }} />
                 </div>
             </Right>
 

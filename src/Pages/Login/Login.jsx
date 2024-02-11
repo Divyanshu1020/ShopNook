@@ -35,7 +35,6 @@ export default function Login() {
             } else {
                 // If it's the last input, blur the current input
                 inputValue.current[index].blur();
-                // Perform any additional logic here if needed
                 loginHandler(event);
             }
         }

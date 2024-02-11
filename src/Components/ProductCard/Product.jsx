@@ -42,7 +42,6 @@ export default function Product({ title, description, price, thumbnail, id }) {
   }
   const productCardClickHandler = () => {
     navigate(`product/${id}`)
-    
   }
 
   return (
