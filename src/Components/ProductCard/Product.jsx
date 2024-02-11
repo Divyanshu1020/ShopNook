@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../../../context/cart.context';
+import { useCart } from '../../context/cart.context';
 import './Product.css';
 
 // import { CiStar } from "react-icons/ci";
@@ -42,11 +42,12 @@ export default function Product({ title, description, price, thumbnail, id }) {
   }
   const productCardClickHandler = () => {
     navigate(`product/${id}`)
+    
   }
 
   return (
-    <div className='product-card' onClick={() => { productCardClickHandler() }}>
-      <div className='card-container'>
+    <div className='product-card' >
+      <div className='card-container' onClick={() => { productCardClickHandler() }}>
         <div className="card-img">
           <img loading="lazy" src={thumbnail} alt="" />
         </div>
@@ -55,13 +56,13 @@ export default function Product({ title, description, price, thumbnail, id }) {
           <div className="product-name">{title}</div>
           <div className="product-details">{description}</div>
         </div>
-        <div className="card-button">
-          <button
-            className='product-button'
-            onClick={() => { addToCart() }}>
-            ADD TO CART
-          </button>
-        </div>
+      </div>
+      <div className="card-button">
+        <button
+          className='product-button'
+          onClick={() => { addToCart() }}>
+          ADD TO CART
+        </button>
       </div>
     </div>
   )

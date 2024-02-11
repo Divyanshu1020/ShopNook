@@ -16,8 +16,7 @@ export default function Search({setSearchShow}) {
         </Search_Bar>
         <Result_Container>
             <div className='results' >
-                <Product/>
-                <Product/>
+                {/* // todo List of all products  */}
             </div>
         </Result_Container>
     </Search_Page>

@@ -1,34 +1,31 @@
 import React from 'react'
-import CartItem from './CartItem/CartItem'
-import { useCart } from '../../../context/cart.context'
 import styled from 'styled-components'
+import ListComponent from './ListComponent'
+import { useCart } from '../../../context/cart.context'
 
 export default function CartItems() {
-  const {cart, setCart} = useCart()
-  const deleteCartItems = (id) =>{
-    const updatedCart = cart.filter(item => item.id !== id);
-    setCart(updatedCart)
-  }
-  return (
-    <Items>
-        {cart.map((product)=>(
-          <CartItem
-            key={product.id}
-            id={product.id}
-            title={product.title}
-            thumbnail={product.thumbnail}
-            price={product.price}
-            quantity={product.quantity}
-            deleteCartItems={deleteCartItems}
-          />    
-        ))}    
-    </Items>
-  )
+    const { cart } = useCart();
+    return (
+        <Container>
+            {cart.map((product) => (
+                <ListComponent
+                    key={product.id}
+                    title={product.description}
+                    price={product.price}
+                    thumbnail={product.thumbnail}
+                    quantity={product.quantity}
+
+                />
+            ))}
+        </Container>
+    )
 }
 
-const Items = styled.div`
-  overflow: auto;
-  &::-webkit-scrollbar{
-    display: none;
-  }
+const Container = styled.div`
+
+    /* border: 2px solid rgb(209, 214, 224); */
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    
+        
 `

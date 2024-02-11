@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useUser } from '../context/user.context';
-import { useCart } from '../context/cart.context';
+import React, { useEffect, useState } from 'react';
 import App from '../App';
+import { useCart } from '../context/cart.context';
+import { useUser } from '../context/user.context';
 
 export default function GetCurrentUser() {
     const { user, setUser } = useUser();
@@ -16,6 +16,7 @@ export default function GetCurrentUser() {
                     const response = await axios.get("http://localhost:8000/api/v1/users/current-user", { withCredentials: true });
                     setUser(response.data.user);
                     setCart(response.data.user.cart);
+                    // localStorage.setItem("cart", JSON.stringify(response.data.user.cart)); 
                     console.log(response.data);
                 }
             } catch (err) {
@@ -27,7 +28,8 @@ export default function GetCurrentUser() {
         };
 
         fetchCurrentUser();
+
     }, []);
 
-    return loading ? <p>Loading...</p> : <App/>;
+    return loading ? <p>Loading...</p> : <App />;
 }

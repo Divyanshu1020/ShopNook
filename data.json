@@ -1,62 +1,6 @@
 
      [
-        {
-
-            
-            "id":11,
-            "title": "Apple iPhone 13",
-            "description": "Apple iPhone 13 (128GB) - (Product) RED",
-            "aboutItem":[
-                "15 cm (6.1-inch) Super Retina XDR display",
-                "Cinematic mode adds shallow depth of field and shifts focus automatically in your videos",
-                "Advanced dual-camera system with 12MP Wide and Ultra Wide cameras; Photographic Styles, Smart HDR 4, Night mode, 4K Dolby Vision HDR recording",
-                "12MP TrueDepth front camera with Night mode, 4K Dolby Vision HDR recording",
-                "A15 Bionic chip for lightning-fast performance"
-            ],
-            "price": 59999,
-            "discountPercentage": 12.96,
-            "rating": 4.69,
-            "stock": 94,
-            "brand": "Apple",
-            "category": "smartphones",
-            "thumbnail": "https://m.media-amazon.com/images/I/71gm8v4uPBL._SX679_.jpg",
-            "images": [
-                "https://m.media-amazon.com/images/I/71gm8v4uPBL._SX679_.jpg",
-                "https://m.media-amazon.com/images/I/61Yc75iMUWL._SX522_.jpg",
-                "https://m.media-amazon.com/images/I/71G44HUh7yL._SX522_.jpg",
-                "https://m.media-amazon.com/images/I/614hWvi65iL._SX522_.jpg"
-            ]
-        },
-        {
-            "id":12,
-            "title": "Motorola Moto G Stylus 5G",
-            "description": "Motorola Moto G Stylus 5G | 2023 | Unlocked | Made for US 6/256GB | 50 MPCamera | Rose Champagne, 162.83x73.77x9.29",
-            "aboutItem" :[
-            "Compatible with T-Mobile 5G and Verizon 5G. Ready for 5G on other select networks dependent on availability; contact your service provider for details. Compatible with all major 4G U.S. carriers, including Verizon, AT&T, and T-Mobile. It also works with prepaid carriers, including Cricket Wireless, Metro by T-Mobile, Simple Mobile, Total Wireless, Tracfone, Net10, Mint, TracFone, and H2O.",
-            "Built-in Stylus. Jot notes, edit photos, sketch artwork, and navigate effortessly. Be more productive and unleash your imagination.",
-            "Fast Performance + 5G speed. Connect at the fastest possible speeds with 5G powered by a Snapdragon 6 Gen 1 processor.",
-            " 6.6 120Hz display and Dolby Atmos. Experience immersive entertainment on a large FHD+ display backed by multidimensional sound",
-            "50MP Camera System. Capture your sharpest, brightest photos even in the most challenging light with Utra Pixel technology.",
-            "256GB Storage. Hold your everday inspirations and sill have planty of room for your apps, photos, songs, and movies.",
-            "5000mAh unbelievable battery life. Never worry about recharging thanks to a 5000mAh battery.",
-            "8MP Ultrawide + Macro Vision+ Depth. Fit 4X more of the scene in your frame than a standard lens. Get 4X closer to your subject, so you see the tiniest of details. Turn everyday photos into professional-looking portraits.",
-            "8MP Ultrawide + Macro Vision+ Depth. Fit 4X more of the scene in your frame than a standard lens. Get 4X closer to your subject, so you see the tiniest of details. Turn everyday photos into professional-looking portraits."
-            ],
-            "price": 33249.57,
-            "discountPercentage": 17.94,
-            "rating": 4.44,
-            "stock": 34,
-            "brand": "Motorola",
-            "category": "smartphones",
-            "thumbnail": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/613O43y5UsL._AC_SX425_.jpg",
-            "images": [
-                "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/613O43y5UsL._AC_SX425_.jpg",
-                "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/6169mWH5E5L._AC_SX425_.jpg",
-                "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51zXUvlh6UL._AC_SX425_.jpg",
-                "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51xT5yxSJQL._AC_SX425_.jpg",
-                "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51x-q8Rr8OL._AC_SX425_.jpg"
-            ]
-        },
+        
         {
             "id":13,
             "title": "Motorola razr",

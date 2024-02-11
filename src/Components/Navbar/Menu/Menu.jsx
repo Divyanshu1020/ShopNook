@@ -6,7 +6,7 @@ export default function Menu({setMenuShow}) {
     <Container>
         <Background onClick={()=>setMenuShow(false)}/>
         <Main_Menu>
-
+  
         </Main_Menu>
     </Container>
   )

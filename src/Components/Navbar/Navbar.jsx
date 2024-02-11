@@ -9,11 +9,11 @@ import { HiOutlineQueueList } from "react-icons/hi2";
 import { ImSearch } from "react-icons/im";
 
 //* Component/Pages
-import Cart from '../../Pages/Cart/Cart';
-import Search from '../../Pages/Search/Search';
+import Cart from './Cart/Cart';
+import Search from './Search/Search';
 import Menu from './Menu/Menu';
 
-// context
+//* context
 import { useCart } from '../../context/cart.context';
 import { useUser } from '../../context/user.context';
 
@@ -25,9 +25,9 @@ export default function Navbar() {
   const [cartShow, setCartShow] = useState(false)
   const [searchShow, setSearchShow] = useState(false);
   const [menuShow, setMenuShow] = useState(false)
- 
-  // const { cart } = useCart()
-  const { user} = useUser()
+
+  const { cart } = useCart()
+  const { user } = useUser()
 
   const navigat = useNavigate();
 
@@ -80,35 +80,33 @@ export default function Navbar() {
                 </li>
               </ul>
             </div>
-            <div className="logo">ShopNook</div>
+            <div className="logo"><Link to='/'>ShopNook</Link></div>
             <div className="right">
-
               <ImSearch
                 className='right-icon'
-                onClick={() => setSearchShow(true)} />
-
+                onClick={() => setSearchShow(true)}
+              />
               {user ?
-                 
                 (<>
                   <BiLike className='right-icon' />
-                  <span className='cart-icon' onClick={() => setCartShow(true)}>
+                  <span className='cart-icon' onClick={() => navigat('/cart')}>
                     <BiCart className='right-icon' />
-                    <span>{0}</span>
+                    <span>{cart.length}</span>
                   </span>
-                  <FaRegUser className='right-icon' />
-                  <HiOutlineQueueList
-                    className='right-icon'
-                    onClick={() => setMenuShow(true)} />
-                </>)
-                : (
+                  <FaRegUser className='right-icon user-icon'
+                    onClick={() => setMenuShow(true)}
+                  />
+
+
+
+                </>) :
+                (
                   <>
                     <Link to='/login'>Login</Link>
-                    
                     <Link to='/signup'> <button className='SingUp'>SignUp</button> </Link>
                   </>
                 )
               }
-
             </div>
           </div>
         </nav>

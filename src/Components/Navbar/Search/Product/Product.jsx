@@ -1,11 +1,10 @@
 import React from 'react';
-import src from '../../../assets/products/watch-prod-1.webp';
 import styled from 'styled-components';
 export default function Product() {
     return (
         <Item className="result">
             <div className="img">
-                <img src={src} alt="" />
+                <img src='../../../assets/products/watch-prod-1.webp' alt="" />
             </div>
             <div className="details">
                 <span className='name'>name Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio suscipit ut quo rem necessitatibus hic nihil obcaecati blanditiis voluptas iure repellat officiis distinctio, ratione non corporis voluptates dolores cum. Minus?</span>

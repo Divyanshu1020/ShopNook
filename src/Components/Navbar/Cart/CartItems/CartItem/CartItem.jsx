@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdClose } from 'react-icons/md'
 import styled from 'styled-components'
-import card from '../../../../assets/products/earbuds-prod-1.webp'
+
 
 export default function CartItem({title, thumbnail, quantity, price ,deleteCartItems, id}) {
   return (
