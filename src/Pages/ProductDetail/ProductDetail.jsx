@@ -46,7 +46,6 @@ export default function ProductDetail() {
     }
 
     useEffect(() => {
-        // window.scrollTo(0, 0,);
         const src = ProductData.find(product => product.id === Number(id));
         const formattedPrice = convertInPricrFormate(src?.price);
         setProduct(src);

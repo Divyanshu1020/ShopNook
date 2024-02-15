@@ -1,9 +1,9 @@
 
-import React, { Suspense, lazy, useEffect } from 'react'
+import React, { Suspense, lazy} from 'react'
 import './App.css'
 
 //* services
-import { Route, BrowserRouter as Router, Routes, ScrollRestoration } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes} from 'react-router-dom'
 
 
 //* Pages

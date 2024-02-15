@@ -60,11 +60,9 @@ const Container = styled.div`
     min-width: 200px;
     width: 25%;
     height: 100%;
-    /* margin: 1rem; */
     position: sticky;
     top: 0;
     background-color: white;
-    /* overflow: auto; */
     box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 0px;
     @media only screen and (max-width: 640px){
       display: none;
