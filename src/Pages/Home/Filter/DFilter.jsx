@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import CategoriesTitle from './Categories title/CategoriesTitle';
 
-
 export default function Filter() {
   const[categories] = useState([
     {
@@ -48,8 +47,6 @@ export default function Filter() {
           title={categories[3].title}
           options={categories[3].options}
         />
-        
-      {/* <img src="../../../../public/giphy.gif" alt=""/> */}
       </Categories>
     </Container>
   )

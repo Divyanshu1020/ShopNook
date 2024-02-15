@@ -3,7 +3,7 @@ import React, { Suspense, lazy, useEffect } from 'react'
 import './App.css'
 
 //* services
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes, ScrollRestoration } from 'react-router-dom'
 
 
 //* Pages
@@ -17,42 +17,13 @@ const Cart = lazy(() => import('./Pages/Cart/Cart'));
 
 //* Components
 import Layout from './Components/Layout/Layout'
+import ScrollToTop from './helper/ScrollToTop'
 
 function App() {
-
-
-  // useEffect(() => {
-  //   // Fetch cart data from local storage
-
-
-  //   // Function to update the database with cart data
-  //   const updateDatabase = () => {
-  //     // Your logic to update the database with cartData
-  //     setTimeout(() => {
-  //       console.log('Updating database with cart data:');
-  //       alert('Updating database with');
-  //     }, 4000);
-  //   };
-
-  //   // Attach the event listener for beforeunload
-  //   const handleBeforeUnload = (event) => {
-  //     updateDatabase();
-  //     // Cancel the event to prevent the browser from closing immediately
-  //     event.returnValue = 'cancel';
-  //   };
-
-  //   window.addEventListener('beforeunload', handleBeforeUnload);
-
-  //   // Cleanup the event listener when the component is unmounted
-  //   return () => {
-  //     window.removeEventListener('beforeunload', handleBeforeUnload);
-  //   };
-  // }, []);
-
-
   return (
     <div className="App">
       <Router>
+      <ScrollToTop/>
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route path='' element={<Home />} />
@@ -62,7 +33,7 @@ function App() {
           <Route path='/login' element={<Suspense><Login /></Suspense>} />
           <Route path='/signup' element={<Suspense><Signup /></Suspense>} />
           <Route path='/*' element={<NoPage />} />
-        </Routes >
+        </Routes>
       </Router>
     </div>
   )

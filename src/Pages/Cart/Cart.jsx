@@ -1,26 +1,30 @@
 import React, { useEffect } from 'react'
+import { ScrollRestoration } from 'react-router-dom'
 import styled from 'styled-components'
-import CartItems from './CartItems/CartItems'
 import { useCart } from '../../context/cart.context'
 import CartIsEmpty from './CartIsEmpty/CartIsEmpty'
+import CartItems from './CartItems/CartItems'
 
 
 export default function Cart() {
     const { cart } = useCart()
-    useEffect(() => {
-        window.scrollTo(0, 0,);
-    }, [])
+    // useEffect(() => {
+    //     window.scrollTo(0, 0,);
+    // }, [])
     return (
+        <div>
+            <Background >
 
-        <Background >
-        
-            { cart.length == 0? (<CartIsEmpty/>):
-            (<Container>
-                <h1>Shopping Cart</h1>
-                <CartItems/>
-            </Container>)}
+                {cart.length == 0 ? (<CartIsEmpty />) :
+                    (<Container>
+                        <h1>Shopping Cart</h1>
+                        <CartItems />
+                    </Container>)}
 
-        </Background>
+            </Background>
+            
+        </div>
+
     )
 }
 

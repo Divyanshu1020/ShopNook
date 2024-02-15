@@ -24,7 +24,6 @@ export default function ProductContainer() {
               description={product.description}
               price={product.price}
               thumbnail={product.thumbnail} />
-
           ))}
         </div>
         <div className="loadmore">

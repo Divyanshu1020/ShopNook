@@ -5,11 +5,9 @@ import './Navbar.css';
 //* Icons
 import { BiCart, BiLike } from "react-icons/bi";
 import { FaRegUser } from "react-icons/fa";
-import { HiOutlineQueueList } from "react-icons/hi2";
 import { ImSearch } from "react-icons/im";
 
 //* Component/Pages
-import Cart from './Cart/Cart';
 import Search from './Search/Search';
 import Menu from './Menu/Menu';
 
@@ -22,14 +20,13 @@ import { useUser } from '../../context/user.context';
 export default function Navbar() {
 
   const [navbarScroll, setNavbarScroll] = useState(false)
-  const [cartShow, setCartShow] = useState(false)
   const [searchShow, setSearchShow] = useState(false);
   const [menuShow, setMenuShow] = useState(false)
 
   const { cart } = useCart()
   const { user } = useUser()
 
-  const navigat = useNavigate();
+  const navigate = useNavigate();
 
   const navbarScrollHandler = () => {
     const offset = window.scrollY;
@@ -40,9 +37,7 @@ export default function Navbar() {
     window.addEventListener('scroll', navbarScrollHandler)
   }, [])
 
-  const navigation = () => {
-    navigat('/category')
-  }
+
 
   return (
     <>
@@ -89,7 +84,7 @@ export default function Navbar() {
               {user ?
                 (<>
                   <BiLike className='right-icon' />
-                  <span className='cart-icon' onClick={() => navigat('/cart')}>
+                  <span className='cart-icon' onClick={() => navigate('/cart')}>
                     <BiCart className='right-icon' />
                     <span>{cart.length}</span>
                   </span>
@@ -112,7 +107,6 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {cartShow && <Cart setCartShow={setCartShow} />}
 
       {searchShow && <Search setSearchShow={setSearchShow} />}
 
