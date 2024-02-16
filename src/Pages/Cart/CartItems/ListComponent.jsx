@@ -15,7 +15,7 @@ export default function ListComponent(props) {
     useEffect(() => {
         const priceFormate = convertInPricrFormate(productQuantity * price);
         setTotal(priceFormate)
-        //* This update prosuct quantity in cart context 
+        //* This update product quantity in cart context 
         setCart((pre)=>(
             pre.map((item)=>(
                 item.id === id ? {...item, quantity: productQuantity } : item

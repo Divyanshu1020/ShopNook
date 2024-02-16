@@ -3,16 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/cart.context';
 import './Product.css';
 
-// import { CiStar } from "react-icons/ci";
-// import { FaStar } from "react-icons/fa";
-// import card from '../../../assets/products/earbuds-prod-1.webp'
 export default function Product({ title, description, price, thumbnail, id }) {
 
   const { cart, setCart } = useCart();
   const navigate = useNavigate();
 
   const addToCart = function () {
-    // check if the product is already in the cart
     const newItem = {
       id,
       title,
@@ -21,6 +17,7 @@ export default function Product({ title, description, price, thumbnail, id }) {
       quantity: 1,
       thumbnail,
     }
+    //* check if the product is already in the cart
     const existingProduct = cart.find(product => (product?.id === id));
 
     if (existingProduct) {
