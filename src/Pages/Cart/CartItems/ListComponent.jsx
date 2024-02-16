@@ -13,15 +13,28 @@ export default function ListComponent(props) {
     useEffect(() => {
         const priceFormate = convertInPricrFormate(productQuantity * price);
         setTotal(priceFormate)
-    }, [productQuantity,price])
+    }, [productQuantity, price])
 
-    //* Handler on submite product quantity
-    const submiteProductQuantity=(e)=>{
-        if(e.key === 'Enter' || e.keyCode === 13){
+    //* Handler for submite product quantity
+    const submiteProductQuantity = (e) => {
+        if (e.key === 'Enter' || e.keyCode === 13) {
             e.preventDefault();
             setProductQuantity(userProductQuantityInput)
         }
     }
+
+    //* Handler for (-) Minus product quantity
+    const minusProductQuantity = () => {
+        setProductQuantity((pre) => (pre - 1))
+        setUserProductQuantityInput((pre) => (pre - 1))
+    }
+
+    //* Handler for (+) plus product quantity
+    const plusProductQuantity = () => {
+        setProductQuantity((pre) => (pre + 1))
+        setUserProductQuantityInput((pre) => (pre + 1))
+    }
+
     return (
         <Container>
             <Lift>
@@ -35,15 +48,15 @@ export default function ListComponent(props) {
             </Lift>
             <Right>
                 <div className="quantity ">
-                    <span><FaMinus /></span>
+                    <span><FaMinus onClick={()=> {minusProductQuantity()}} /></span>
                     <input
                         type="text"
                         value={userProductQuantityInput}
                         onChange={(e) => { setUserProductQuantityInput(e.target.value) }}
-                        onBlur={() => { setUserProductQuantityInput(productQuantity)}}
-                        onKeyDown={(e)=>{submiteProductQuantity(e)}}
+                        onBlur={() => { setUserProductQuantityInput(productQuantity) }}
+                        onKeyDown={(e) => { submiteProductQuantity(e) }}
                     />
-                    <span><FaPlus /></span>
+                    <span><FaPlus onClick={()=>{plusProductQuantity()}} /></span>
                 </div>
 
                 <div className="price">
