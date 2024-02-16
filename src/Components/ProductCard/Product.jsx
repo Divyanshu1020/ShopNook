@@ -22,9 +22,6 @@ export default function Product({ title, description, price, thumbnail, id }) {
       thumbnail,
     }
     const existingProduct = cart.find(product => (product?.id === id));
-    // const existingProduct = cart.map(
-    //   item => ( item.id == id? true : false))
-    // console.log(existingProduct);
 
     if (existingProduct) {
       setCart(preProducts => (

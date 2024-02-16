@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { convertInPricrFormate } from '../../../helper/convertInPriceFormat';
+import { useCart } from '../../../context/cart.context';
 
 export default function ListComponent(props) {
     const { title, price, thumbnail, quantity, deleteCartItems, id } = props;
+    const {setCart} = useCart()
     const [total, setTotal] = useState(0)
     const [productQuantity, setProductQuantity] = useState(quantity)
     const [userProductQuantityInput, setUserProductQuantityInput] = useState(quantity)
@@ -13,13 +15,24 @@ export default function ListComponent(props) {
     useEffect(() => {
         const priceFormate = convertInPricrFormate(productQuantity * price);
         setTotal(priceFormate)
-    }, [productQuantity, price])
+        //* This update prosuct quantity in cart context 
+        setCart((pre)=>(
+            pre.map((item)=>(
+                item.id === id ? {...item, quantity: productQuantity } : item
+            ))
+        ))
+    }, [productQuantity, price, setCart, id])
 
     //* Handler for submite product quantity
     const submiteProductQuantity = (e) => {
         if (e.key === 'Enter' || e.keyCode === 13) {
             e.preventDefault();
-            setProductQuantity(userProductQuantityInput)
+            setProductQuantity(userProductQuantityInput);
+            setCart((pre)=>(
+                pre.map((item)=>(
+                    item.id === id ? {...item, quantity: item.quantity + 1} : item
+                ))
+            ))
         }
     }
 
