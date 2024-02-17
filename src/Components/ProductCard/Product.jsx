@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/cart.context';
 import './Product.css';
+import { convertInPricrFormate } from '../../helper/convertInPriceFormat';
+
 
 export default function Product({ title, description, price, thumbnail, id }) {
 
@@ -45,7 +47,7 @@ export default function Product({ title, description, price, thumbnail, id }) {
           <img loading="lazy" src={thumbnail} alt="" />
         </div>
         <div className="card-details">
-          <div className="product-price">&#8377; {price}</div>
+          <div className="product-price">{convertInPricrFormate(price)}</div>
           <div className="product-name">{title}</div>
           <div className="product-details">{description}</div>
         </div>
