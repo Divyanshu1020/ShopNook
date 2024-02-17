@@ -6,7 +6,7 @@ import { convertInPricrFormate } from '../../../helper/convertInPriceFormat';
 import { useCart } from '../../../context/cart.context';
 
 export default function ListComponent(props) {
-    const { title, price, thumbnail, quantity, deleteCartItems, id } = props;
+    const { title, price, thumbnail, quantity, deleteCartItems, id, index } = props;
     const {setCart} = useCart()
     const [total, setTotal] = useState(0)
     const [productQuantity, setProductQuantity] = useState(quantity)
@@ -76,7 +76,7 @@ export default function ListComponent(props) {
                     <span >{total}</span>
                 </div>
                 <div>
-                    <MdDelete className='delete' onClick={() => { deleteCartItems(id) }} />
+                    <MdDelete className='delete' onClick={() => { deleteCartItems(index) }} />
                 </div>
             </Right>
 

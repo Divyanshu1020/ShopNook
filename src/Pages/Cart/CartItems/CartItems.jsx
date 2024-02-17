@@ -1,29 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
-import ListComponent from './ListComponent'
 import { useCart } from '../../../context/cart.context'
+import ListComponent from './ListComponent'
 
 export default function CartItems() {
-    const {cart, setCart} = useCart()
-    const deleteCartItems = (id) =>{
-      const updatedCart = cart.filter(item => item.id !== id);
-      setCart(updatedCart)
+    const { cart, setCart } = useCart()  //* cart context
+    const deleteCartItems = (index) => {
+        const updatedCart = [...cart];
+        updatedCart.splice(index, 1);
+        setCart(updatedCart);
     }
-    return (
-        <Container>
-            {cart.map((product) => (
-                <ListComponent
-                    key={product.id}
-                    id={product.id}
-                    title={product.description}
-                    price={product.price}
-                    thumbnail={product.thumbnail}
-                    quantity={product.quantity}
-                    deleteCartItems={deleteCartItems}
-                />
-            ))}
-        </Container>
-    )
+
+return (
+    <Container>
+        {cart.map((product, index) => (
+            <ListComponent
+                key={product.id}
+                id={product.id}
+                index={index}
+                title={product.description}
+                price={product.price}
+                thumbnail={product.thumbnail}
+                quantity={product.quantity}
+                deleteCartItems={deleteCartItems}
+            />
+        ))}
+    </Container>
+)
 }
 
 const Container = styled.div`
