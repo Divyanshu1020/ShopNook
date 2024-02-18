@@ -7,7 +7,7 @@ import { useCart } from '../../../context/cart.context';
 
 export default function ListComponent(props) {
     const { title, price, thumbnail, quantity, deleteCartItems, id, index } = props;
-    const {setCart} = useCart()
+    const { setCart } = useCart()
     const [total, setTotal] = useState(0)
     const [productQuantity, setProductQuantity] = useState(quantity)
     const [userProductQuantityInput, setUserProductQuantityInput] = useState(quantity)
@@ -16,9 +16,9 @@ export default function ListComponent(props) {
         const priceFormate = convertInPricrFormate(productQuantity * price);
         setTotal(priceFormate)
         //* This update product quantity in cart context 
-        setCart((pre)=>(
-            pre.map((item)=>(
-                item.id === id ? {...item, quantity: productQuantity } : item
+        setCart((pre) => (
+            pre.map((item) => (
+                item.id === id ? { ...item, quantity: productQuantity } : item
             ))
         ))
     }, [productQuantity, price, setCart, id])
@@ -28,9 +28,9 @@ export default function ListComponent(props) {
         if (e.key === 'Enter' || e.keyCode === 13) {
             e.preventDefault();
             setProductQuantity(userProductQuantityInput);
-            setCart((pre)=>(
-                pre.map((item)=>(
-                    item.id === id ? {...item, quantity: item.quantity + 1} : item
+            setCart((pre) => (
+                pre.map((item) => (
+                    item.id === id ? { ...item, quantity: item.quantity + 1 } : item
                 ))
             ))
         }
@@ -56,12 +56,12 @@ export default function ListComponent(props) {
                 </div>
                 <div className="title">
                     <h4 className='name'>{title}</h4>
-                    <h3 className='price'>₹{price}</h3>
+                    <h3 className='price'>{convertInPricrFormate(price)}</h3>
                 </div>
             </Lift>
             <Right>
                 <div className="quantity ">
-                    <span><FaMinus onClick={()=> {minusProductQuantity()}} /></span>
+                    <span><FaMinus onClick={() => { minusProductQuantity() }} /></span>
                     <input
                         type="text"
                         value={userProductQuantityInput}
@@ -69,7 +69,7 @@ export default function ListComponent(props) {
                         onBlur={() => { setUserProductQuantityInput(productQuantity) }}
                         onKeyDown={(e) => { submiteProductQuantity(e) }}
                     />
-                    <span><FaPlus onClick={()=>{plusProductQuantity()}} /></span>
+                    <span><FaPlus onClick={() => { plusProductQuantity() }} /></span>
                 </div>
 
                 <div className="price">
@@ -188,6 +188,7 @@ const Right = styled.div`
             font-size: 1.3rem;
             line-height: 1rem;
             padding-right: 2rem;
+            min-width: 5rem;
         }
     }
     .delete{
