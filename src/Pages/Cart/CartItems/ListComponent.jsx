@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React, { useEffect, useState } from 'react';
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
-import { convertInPricrFormate } from '../../../helper/convertInPriceFormat';
+import styled from 'styled-components';
 import { useCart } from '../../../context/cart.context';
+import { convertInPricrFormate } from '../../../helper/convertInPriceFormat';
 
 export default function ListComponent(props) {
     const { title, price, thumbnail, quantity, deleteCartItems, id, index } = props;
@@ -25,15 +25,14 @@ export default function ListComponent(props) {
 
     //* Handler for submite product quantity
     const submiteProductQuantity = (e) => {
-        if (e.key === 'Enter' || e.keyCode === 13) {
-            e.preventDefault();
-            setProductQuantity(userProductQuantityInput);
-            setCart((pre) => (
-                pre.map((item) => (
-                    item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-                ))
+        e.preventDefault();
+        setProductQuantity(userProductQuantityInput);
+        setCart((pre) => (
+            pre.map((item) => (
+                item.id === id ? { ...item, quantity: item.quantity + 1 } : item
             ))
-        }
+        ))
+
     }
 
     //* Handler for (-) Minus product quantity
@@ -62,13 +61,13 @@ export default function ListComponent(props) {
             <Right>
                 <div className="quantity ">
                     <span><FaMinus onClick={() => { minusProductQuantity() }} /></span>
-                    <input
+                    <form onSubmit={(e) => { submiteProductQuantity(e) }}><input
                         type="text"
                         value={userProductQuantityInput}
                         onChange={(e) => { setUserProductQuantityInput(e.target.value) }}
                         onBlur={() => { setUserProductQuantityInput(productQuantity) }}
-                        onKeyDown={(e) => { submiteProductQuantity(e) }}
                     />
+                    </form>
                     <span><FaPlus onClick={() => { plusProductQuantity() }} /></span>
                 </div>
 
