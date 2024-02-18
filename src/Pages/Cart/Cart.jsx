@@ -3,15 +3,18 @@ import styled from 'styled-components'
 import { useCart } from '../../context/cart.context'
 import CartIsEmpty from './CartIsEmpty/CartIsEmpty'
 import CartItems from './CartItems/CartItems'
+import Summary from './Summary/Summary'
 
 
 export default function Cart() {
     const { cart } = useCart()
-    const Container = cart.length === 0 ? <CartIsEmpty /> : <CartItems />
+    const container = cart.length === 0 ? <CartIsEmpty /> : <CartItems />
+    const summary = cart.length === 0 ? null : <Summary />
     return (
         <>
-            {Container}
-            
+            {container}
+            {summary}
+
         </>
 
     )
