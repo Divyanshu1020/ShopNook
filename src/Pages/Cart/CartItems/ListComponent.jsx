@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import styled from 'styled-components';
 import { useCart } from '../../../context/cart.context';
 import { convertInPricrFormate } from '../../../helper/convertInPriceFormat';
+import { Link } from 'react-router-dom';
 
 export default function ListComponent(props) {
     const { title, price, thumbnail, quantity, deleteCartItems, id, index } = props;
@@ -54,7 +55,7 @@ export default function ListComponent(props) {
                     <img src={thumbnail} alt="" />
                 </div>
                 <div className="title">
-                    <h4 className='name'>{title}</h4>
+                    <Link to={`/product/${id}`}><h4 className='name'>{title}</h4></Link>
                     <h3 className='price'>{convertInPricrFormate(price)}</h3>
                 </div>
             </Lift>
@@ -110,6 +111,10 @@ const Lift = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        a{
+            color: inherit !important;
+            text-decoration : none
+        }
     }
     .name{
         font-size: 20px; 
