@@ -18,6 +18,7 @@ const Cart = lazy(() => import('./Pages/Cart/Cart'));
 //* Components
 import Layout from './Components/Layout/Layout'
 import ScrollToTop from './helper/ScrollToTop'
+import Wishlist from './Pages/Wishlist/Wishlist'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path='' element={<Home />} />
             <Route path='product/:id' element={<ProductDetail />} />
             <Route path='cart' element={<Cart />} />
+            <Route path='wishlist' element={<Wishlist />} />
           </Route>
           <Route path='/login' element={<Suspense><Login /></Suspense>} />
           <Route path='/signup' element={<Suspense><Signup /></Suspense>} />

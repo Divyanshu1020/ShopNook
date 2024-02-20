@@ -47,7 +47,7 @@ export default function Navbar() {
             <div className="left">
               <ul className='left-link'>
                 <li className='left-link-li'><Link to='/'>Home</Link></li>
-                <li className='left-link-li' onClick={() => navigation()}>About</li>
+                <li className='left-link-li'><Link to=' '>About</Link></li>
                 <li className='left-link-li dropdown'>
                   Categories
                   <div className="dropdown-content" >
@@ -83,17 +83,18 @@ export default function Navbar() {
               />
               {user ?
                 (<>
-                  <BiLike className='right-icon' />
-                  <span className='cart-icon' onClick={() => navigate('/cart')}>
-                    <BiCart className='right-icon' />
-                    <span>{cart.length}</span>
-                  </span>
+                  <Link to= '/wishlist'>
+                    <BiLike className='right-icon' />
+                  </Link>
+                  <Link to='/cart'>
+                    <span className='cart-icon'>
+                      <BiCart className='right-icon' />
+                      <span>{cart.length}</span>
+                    </span>
+                  </Link>
                   <FaRegUser className='right-icon user-icon'
                     onClick={() => setMenuShow(true)}
                   />
-
-
-
                 </>) :
                 (
                   <>
@@ -107,12 +108,9 @@ export default function Navbar() {
         </nav>
       </div>
 
-
+      {/** Sliding Window  */}
       {searchShow && <Search setSearchShow={setSearchShow} />}
-
       {menuShow && <Menu setMenuShow={setMenuShow} />}
-
-
     </>
   )
 }

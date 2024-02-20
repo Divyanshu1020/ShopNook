@@ -8,14 +8,20 @@ import { useParams } from 'react-router-dom';
 import { convertInPricrFormate } from '../../helper/convertInPriceFormat.js'
 import ProductData from '../../../data.json';
 import { useCart } from '../../context/cart.context.jsx';
+import { useWishlist } from '../../context/wishlist.context.jsx';
 
 
 
 
 export default function ProductDetail() {
-    const { cart, setCart } = useCart();
     const [product, setProduct] = useState({})
     const [price, setPrice] = useState();
+    const [index, setIndex] = useState(0);
+
+    //* Context
+    const { cart, setCart } = useCart();
+    const { wishlist, setWishlist } = useWishlist();
+
     const { id } = useParams();
 
 
@@ -44,14 +50,40 @@ export default function ProductDetail() {
         }
 
     }
+    
+    const addToWishlist = () => {
+        const newItem = {
+            id,
+            title: product.title,
+            description: product.description,
+            price: product.price,
+            thumbnail: product.thumbnail,
+        }
+
+
+
+        if (index >= 0) {
+            const updateWishlist = [...wishlist];
+            updateWishlist.splice(index, 1);
+            setWishlist(updateWishlist);
+
+        } else {
+            setWishlist(preProducts => ([...preProducts, newItem]))
+        }
+    }
+
 
     useEffect(() => {
+        // Call to server product based on id
         const src = ProductData.find(product => product.id === Number(id));
+
+        const index = wishlist.findIndex(product => (product?.id === id));
         const formattedPrice = convertInPricrFormate(src?.price);
+        setIndex(index)
         setProduct(src);
         setPrice(formattedPrice);
 
-    }, [id])
+    }, [id, wishlist])
 
     return (
 
@@ -62,9 +94,12 @@ export default function ProductDetail() {
                 </div>
                 <div className="sp-container-right">
                     <div className='sp-container-right-top'>
-
                         <div className="name">{`${product.description}`}</div>
-                        <BiLike className={`sp-container-right-top-like-btn `} />
+
+                        <BiLike
+                            className={`sp-container-right-top-like-btn ${index >= 0 ? "like" : ""} `}
+                            onClick={() => { addToWishlist() }}
+                        />
                     </div>
                     <div className='prices'>
                         <div className="price"> {`${price}`}</div>
