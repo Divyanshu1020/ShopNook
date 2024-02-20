@@ -66,7 +66,10 @@ export default function ProductDetail() {
                         <div className="name">{`${product.description}`}</div>
                         <BiLike className={`sp-container-right-top-like-btn `} />
                     </div>
-                    <div className="price"> {`${price}`}</div>
+                    <div className='prices'>
+                        <div className="price"> {`${price}`}</div>
+                        <div className="actual price"> {`${price}`}</div>
+                    </div>
                     <div className="des">
                         {<ul>
                             {product.aboutItem?.map((line, index) => (
@@ -107,7 +110,7 @@ export default function ProductDetail() {
 
                 </div>
             </div>
-             
+
         </div>
 
 

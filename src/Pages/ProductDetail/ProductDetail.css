@@ -70,11 +70,22 @@
 .sp-container-right .like {
   color: #8e2dec;
 }
-.sp-container-right .price {
+.sp-container-right .prices {
+  display: flex;
+  flex-direction: row;
+}
+.sp-container-right .prices .price {
   font-size: 35px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 32px;
   margin-bottom: 1rem;
+}
+.sp-container-right .prices .actual {
+  margin-left: 2rem;
+  font-size: 25px;
+  font-weight: 500;
+  color: #6b6b6b;
+  text-decoration: line-through;
 }
 
 .sp-container-right .des {
