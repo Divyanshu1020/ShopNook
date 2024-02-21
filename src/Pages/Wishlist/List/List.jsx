@@ -4,21 +4,26 @@ import ListComponent from './ListComponent/ListComponent'
 import { useWishlist } from '../../../context/wishlist.context'
 
 export default function List() {
-  const {wishlist} = useWishlist()
-  const deleteWishlistItems = () => {
-    
+  const { wishlist, setWishlist } = useWishlist();
+
+  const deleteWishlistItems = (index) => {
+    const updateWishlist = [...wishlist];
+    updateWishlist.splice(index, 1);
+    console.log(updateWishlist);
+    // setWishlist(updateWishlist)
   }
   return (
     <Background >
       <Container>
-        <h1>Shopping Cart</h1>
+        <h1>Wishlist</h1>
         <Container>
           {wishlist.map((product, index) => (
             <ListComponent
               key={product.id}
               id={product.id}
               index={index}
-              title={product.description}
+              title={product.title}
+              description={product.description}
               price={product.price}
               thumbnail={product.thumbnail}
               deleteWishlistItems={deleteWishlistItems}

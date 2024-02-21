@@ -16,6 +16,7 @@ import { useWishlist } from '../../context/wishlist.context.jsx';
 export default function ProductDetail() {
     const [product, setProduct] = useState({})
     const [price, setPrice] = useState();
+    const [actualPrice, setactualPrice] = useState();
     const [index, setIndex] = useState(0);
 
     //* Context
@@ -79,9 +80,11 @@ export default function ProductDetail() {
 
         const index = wishlist.findIndex(product => (product?.id === id));
         const formattedPrice = convertInPricrFormate(src?.price);
+        const formattedActualPrice = convertInPricrFormate(src?.actualPrice);
         setIndex(index)
         setProduct(src);
         setPrice(formattedPrice);
+        setactualPrice(formattedActualPrice);
 
     }, [id, wishlist])
 
@@ -103,7 +106,7 @@ export default function ProductDetail() {
                     </div>
                     <div className='prices'>
                         <div className="price"> {`${price}`}</div>
-                        <div className="actual price"> {`${price}`}</div>
+                        <div className="actual price"> {`${actualPrice}`}</div>
                     </div>
                     <div className="des">
                         {<ul>
@@ -115,7 +118,7 @@ export default function ProductDetail() {
                     <div role='separator' className='separator'></div>
                     <div className="bottom">
                         <div className='bottom-left'>
-                            <span className="bold">Category: <span>headphone</span></span>
+                            <span className="bold">Capacity: <span>{product.Capacity}</span></span>
                             <span className="bold">
                                 Share:
                                 <span className='s-icon'>

@@ -21,7 +21,8 @@ export default function CartItems() {
                                 key={product.id}
                                 id={product.id}
                                 index={index}
-                                title={product.description}
+                                title={product.title}
+                                description={product.description}
                                 price={product.price}
                                 thumbnail={product.thumbnail}
                                 quantity={product.quantity}

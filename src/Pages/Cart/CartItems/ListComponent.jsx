@@ -7,7 +7,7 @@ import { convertInPricrFormate } from '../../../helper/convertInPriceFormat';
 import { Link } from 'react-router-dom';
 
 export default function ListComponent(props) {
-    const { title, price, thumbnail, quantity, deleteCartItems, id, index } = props;
+    const { description, price, thumbnail, quantity, deleteCartItems, id, index } = props;
     const { setCart } = useCart()
     const [total, setTotal] = useState(0)
     const [productQuantity, setProductQuantity] = useState(quantity)
@@ -55,7 +55,7 @@ export default function ListComponent(props) {
                     <img src={thumbnail} alt="" />
                 </div>
                 <div className="title">
-                    <Link to={`/product/${id}`}><h4 className='name'>{title}</h4></Link>
+                    <Link to={`/product/${id}`}><h4 className='name'>{description}</h4></Link>
                     <h3 className='price'>{convertInPricrFormate(price)}</h3>
                 </div>
             </Lift>

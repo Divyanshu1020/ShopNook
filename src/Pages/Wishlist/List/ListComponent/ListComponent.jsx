@@ -3,12 +3,40 @@ import { FaCartPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { convertInPricrFormate } from '../../../../helper/convertInPriceFormat';
+import { MdDelete } from 'react-icons/md';
+import { useCart } from '../../../../context/cart.context';
 
 export default function ListComponent(props) {
-  const { title, price, thumbnail, deleteWishlistItems, id, index } = props;
-  const addToWishlist = () => {
+  const { title, price, description, thumbnail, deleteWishlistItems, id, index } = props;
+  //* context
+  const { cart, setCart } = useCart();
 
-  }
+  const addToCart = () => {
+    const newItem = {
+        id,
+        title,
+        description,
+        price,
+        quantity: 1,
+        thumbnail,
+    }
+    const existingProduct = cart.find(product => (product?.id === id));
+
+    if (existingProduct) {
+        setCart(preProducts => (
+            preProducts.map(
+                item => (
+                    item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+                )
+            )
+        ))
+    } else {
+        setCart(preProducts => ([...preProducts, newItem]))
+
+    }
+
+}
+
   return (
     <Container>
       <Lift>
@@ -16,7 +44,7 @@ export default function ListComponent(props) {
           <img src={thumbnail} alt="" />
         </div>
         <div className="title">
-          <Link to={`/product/${id}`}><h4 className='name'>{title}</h4></Link>
+          <Link to={`/product/${id}`}><h4 className='name'>{description}</h4></Link>
           <h3 className='price'>{convertInPricrFormate(price)}</h3>
         </div>
       </Lift>
@@ -25,11 +53,13 @@ export default function ListComponent(props) {
           <button className='Buy-Now'>Buy Now</button>
           <button
             className='cart'
-            onClick={() => { addToWishlist() }}>
+            onClick={() => { addToCart() }}>
             <FaCartPlus />
           </button>
-          <button onClick={deleteWishlistItems(index)}>
-            deltele
+          <button
+            className='cart red'
+            onClick={() => {deleteWishlistItems(index)}}>
+            <MdDelete />
           </button>
         </div>
       </Right>
@@ -135,6 +165,12 @@ const Right = styled.div`
     &:hover {
       color: rgba(0, 0, 0, 0.681);
       border: 2px solid rgba(0, 0, 0, 0.681);
+    }
+  }
+  .red{
+    &:hover {
+      color: red;
+      border: 2px solid red;
     }
   }
 

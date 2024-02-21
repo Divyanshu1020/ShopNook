@@ -1,6 +1,209 @@
 
      [
+        {
+            "id":907,
+            "title": "ZENAERO 15.6",
+            "description": "ZENAERO 15.6 Laptop 16GB RAM 1TB NVMe SSD, 12th Intel Alder Lake-N100 (4C/4T, up to 3.4GHz) FHD IPS Display (1080P)/Full-Function Type-C/Gigabit Ethernet/WiFi6/BT5.0/Windows 11 Pro Notebook Computer",
+            "aboutItem": [
+              "Powerful Intel 12Gen Processor - ZENAERO laptop relies on the Intel Alder Lake-N100 processor (4 cores 4 threads, 6MB cache, up to 3.4GHz). The N100 processor exhibits a marked superiority over the Pentium N5030 or Celeron N5095, It also comes with integrated Intel UHD Graphics up to 1200MHz for seamless multitasking and enhanced graphics capabilities.",
         
+              "Blazing Speed, Massive Capacity - This laptop computer is equipped with DDR4 RAM 16GB 3200 MHz memory, offering more space and faster performance compared to DDR3 devices, resulting in a 50% overall system speed improvement. It also features a built-in m.2 2280 PCIe Gen 3.0 NVMe 1TB SSD, which is expandable up to 4TB by simply opening the screw-equipped compartment on the bottom",
+        
+              "15.6-inch Vibrant Full HD Display - The laptop PC boasts a 1920 by 1080 pixel resolution and a 16:9 aspect ratio, making it suitable for office, school, or study purposes. With a high brightness level of 300 cd/m², it provides sufficient clarity for indoor use and remains visible even in direct sunlight. The display offers excellent viewing angles and vibrant color output.",
+        
+              "10 Extensive Interface Options - This notebook PC offers a wide range of connectivity options, including a full-featured Type-C port with PD 65W charging support, USB Type-C port for DCin and data transfer, 3 USB-A ports, 3.5mm audio jack, HD2.0 port, Gigabit Ethernet (RJ45) port, microSD card reader (supports up to 256GB expansion), W-iFi 6, Bluetooth 5.0, and a 2.0 MP front-facing webcam. These interfaces ensure compatibility with various devices and adaptability to different scenarios.",
+        
+              " Enhanced Backlit Keyboard & Shortcuts - Typing on the notebook's keyboard provides a pleasant experience. It features white backlighting, allowing for comfortable usage in low-light conditions. The large touchpad ensures precise navigation and smooth gliding. Additional functions can be accessed through the FN keys, including volume control, keyboard backlight adjustment, and display brightness control."
+            ],
+            "price": 30684.01,
+            "actualPrice": 54109.0,
+            "discountPercentage": 17.91,
+            "rating": 4.3,
+            "stock": 123,
+            "brand": "ZENAERO",
+            "category": "laptops",
+            "Capacity": "16GB RAM, 1TB SSD",
+            "color": "Sliver",
+            "thumbnail": "https://m.media-amazon.com/images/I/71+DU6PnCXL._AC_SX425_.jpg",
+            "images": [
+              "https://m.media-amazon.com/images/I/71+DU6PnCXL._AC_SX425_.jpg",
+              "https://m.media-amazon.com/images/I/71MXRz1pkBL._AC_SX425_.jpg",
+              "https://m.media-amazon.com/images/I/71Y+Ld6ZD-L._AC_SX425_.jpg",
+              "https://m.media-amazon.com/images/I/71npTONqROL._AC_SX425_.jpg",
+              "https://m.media-amazon.com/images/I/710F6X7CDCL._AC_SX425_.jpg"
+            ]
+          },
+          {
+            "id":906,
+            "title": "HP Newest 14",
+            "description": "HP Newest 14 Ultral Light Laptop for Students and Business, Intel Quad-Core N4120, 8GB RAM, 192GB Storage(64GB eMMC+128GB Micro SD), 1 Year Office 365, Webcam, HDMI, WiFi, USB-A&C, Win 11 S",
+            "aboutItem": [
+              "【14 HD Display】14.0-inch diagonal, HD (1366 x 768), micro-edge, BrightView. With virtually no bezel encircling the display, an ultra-wide viewing experience provides for seamless multi-monitor set-ups",
+        
+              "【Processor & Graphics】Intel Celeron N4120, 4 Cores & 4 Threads, 1.10 GHz Base Frequency, Up to 2.60 GHz Burst Frequency, 4 MB Cahce, Intel UHD Graphics 600, Handle multitasking reliably with the perfect combination of performance, power consumption, and value",
+        
+              "【RAM & Storage】8GB high-bandwidth DDR4 Memory (2400 MHz), Adequate high-bandwidth RAM to smoothly run multiple applications and browser tabs all at once. 64GB high-speed eMMC Storage for your office and webinar needs.",
+        
+              "【RAM & Storage】8GB high-bandwidth DDR4 Memory (2400 MHz), Adequate high-bandwidth RAM to smoothly run multiple applications and browser tabs all at once. 64GB high-speed eMMC Storage for your office and webinar needs.",
+        
+              "【Windows 11 Home in S mode】You may switch to regular windows 11: Press 'Start button' bottom left of the screen; Select 'Settings' icon above 'power' icon;Select 'Activation', then Go to Store; Select Get option under 'Switch out of S mode'; Hit Install. (If you also see an 'Upgrade your edition of Windows' section, be careful not to click the 'Go to the Store' link that appears there.)."
+            ],
+            "price": 24877.94,
+            "actualPrice": 54109.0,
+            "discountPercentage": 17.91,
+            "rating": 4.3,
+            "stock": 123,
+            "brand": "HP",
+            "category": "laptops",
+            "Capacity": "8GB RAM | 192GB Storage",
+            "color": "Sliver",
+            "thumbnail": "https://m.media-amazon.com/images/I/711OHeRmEaL._AC_SX679_.jpg",
+            "images": [
+              "https://m.media-amazon.com/images/I/711OHeRmEaL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/71TWePvkAbL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/71w7d0qIcuL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/61hRnfJKCqL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/51JuFU3+A-L._AC_SX679_.jpg"
+            ]
+          },
+          {
+            "id":905,
+            "title": "HP 14 Laptop",
+            "description": "HP 14 Laptop, Intel Celeron N4020, 4 GB RAM, 64 GB Storage, 14-inch Micro-edge HD Display, Windows 11 Home, Thin & Portable, 4K Graphics, One Year of Microsoft 365 (14-dq0040nr, 2021, Snowflake White)",
+            "aboutItem": [
+              "【14 HD Display】14.0-inch diagonal, HD (1366 x 768), micro-edge, BrightView. With virtually no bezel encircling the display, an ultra-wide viewing experience provides for seamless multi-monitor set-ups",
+        
+              "【Processor & Graphics】Intel Celeron N4120, 4 Cores & 4 Threads, 1.10 GHz Base Frequency, Up to 2.60 GHz Burst Frequency, 4 MB Cahce, Intel UHD Graphics 600, Handle multitasking reliably with the perfect combination of performance, power consumption, and value",
+        
+              "【RAM & Storage】8GB high-bandwidth DDR4 Memory (2400 MHz), Adequate high-bandwidth RAM to smoothly run multiple applications and browser tabs all at once. 64GB high-speed eMMC Storage for your office and webinar needs.",
+        
+              "【RAM & Storage】8GB high-bandwidth DDR4 Memory (2400 MHz), Adequate high-bandwidth RAM to smoothly run multiple applications and browser tabs all at once. 64GB high-speed eMMC Storage for your office and webinar needs.",
+        
+              "【Windows 11 Home in S mode】You may switch to regular windows 11: Press 'Start button' bottom left of the screen; Select 'Settings' icon above 'power' icon;Select 'Activation', then Go to Store; Select Get option under 'Switch out of S mode'; Hit Install. (If you also see an 'Upgrade your edition of Windows' section, be careful not to click the 'Go to the Store' link that appears there.)."
+            ],
+            "price": 10877.94,
+            "actualPrice": 14109.0,
+            "discountPercentage": 17.91,
+            "rating": 4.3,
+            "stock": 123,
+            "brand": "HP",
+            "category": "laptops",
+            "Capacity": "4 GB RAM, 64 GB",
+            "color": "Sliver",
+            "thumbnail": "https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX425_.jpg",
+            "images": [
+              "https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX425_.jpg",
+              "https://m.media-amazon.com/images/I/71UtGmh9k4S._AC_SX425_.jpg",
+              "https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX425_.jpg",
+              "https://m.media-amazon.com/images/I/81XqHVk8fDS._AC_SX425_.jpg",
+              "https://m.media-amazon.com/images/I/61DVGcBxglS._AC_SX425_.jpg"
+            ]
+          },
+          {
+            "id":904,
+            "title": "Acer Aspire 3",
+            "description": "Acer Aspire 3 A315-24P-R7VH Slim Laptop | 15.6' Full HD IPS Display | AMD Ryzen 3 7320U Quad-Core Processor | AMD Radeon Graphics | 8GB LPDDR5 | 128GB NVMe SSD | Wi-Fi 6 | Windows 11 Home in S Mode",
+            "aboutItem": [
+              "Purposeful Design: Travel with ease and look great doing it with the Aspire's 3 thin, light design.",
+        
+              "Ready-to-Go Performance: The Aspire 3 is ready-to-go with the latest AMD Ryzen 3 7320U Processor with Radeon Graphics—ideal for the entire family, with performance and productivity at the core.",
+        
+              "Visibly Stunning: Experience sharp details and crisp colors on the 15.6' Full HD IPS display with 16:9 aspect ratio and narrow bezels..",
+        
+              "Internal Specifications: 8GB LPDDR5 Onboard Memory; 128GB NVMe solid-state drive storage to store your files and media",
+        
+              "The HD front-facing camera uses Acer’s TNR (Temporal Noise Reduction) technology for high-quality imagery in low-light conditions. Acer PurifiedVoice technology with AI Noise Reduction filters out any extra sound for clear communication over online meetings..",
+        
+              "Wireless Wi-Fi 6 Convenience: Maintain a strong, consistent wireless signal with Wi-Fi 6 (aka 802.11ax) and 2x2 MU-MIMO technology.",
+        
+              "Improved Thermals: With a 78% increase in fan surface area, enjoy an improved thermal system and an additional 17% thermal capacity. Allowing for longer, more efficient work sessions while not plugged in."
+            ],
+            "price": 30877.94,
+            "actualPrice": 44109.0,
+            "discountPercentage": 17.91,
+            "rating": 4.3,
+            "stock": 123,
+            "brand": "Acer",
+            "category": "laptops",
+            "Capacity": "8/128GB",
+            "color": "Black",
+            "thumbnail": "https://m.media-amazon.com/images/I/61gKkYQn6lL._AC_SX679_.jpg",
+            "images": [
+              "https://m.media-amazon.com/images/I/61gKkYQn6lL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/51dVqOOYe4L._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/51JDZf0znWL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/51YhIiUU7gL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/81w4nBxLSyL._AC_SX679_.jpg"
+            ]
+          },
+          {
+            "id":902,
+            "title": "Lenovo IdeaPad",
+            "description": "Lenovo IdeaPad 1 Student Laptop, Intel Dual Core Processor, 20GB RAM, 1TB SSD + 128GB eMMC, 15.6' FHD Display, 1 Year Office 365, Windows 11 Home, Wi-Fi 6, Webcam, Bluetooth, SD Card Reader, Grey",
+        
+            "aboutItem": [
+              "【High Speed RAM And Enormous Space】20GB high-bandwidth RAM to smoothly run multiple applications and browser tabs all at once; 1TB PCIe NVMe M.2 Solid State Drive + 128GB eMMC allows to fast bootup and data transfer",
+        
+              "【Processor】Celeron N4500 (Cores:2 Threads:2; Clockspeed:1.1 GHz Turbo Speed: 2.8GHz; Cache Size: L1: 4096 KB, L2: 12.0 MB, L3: 4 MB).",
+        
+              "【Display】15.6' FHD (1920x1080), 250nits, IPS-Level, Anti-glare.",
+        
+              "【Tech Specs】 1 x Card reader; 1 x HDMI 1.4b; 1 x USB 2.0; 1 x USB-C 3.2 Gen 1 (support data transfer only); 1 x USB 3.2 Gen 1; 1 x Headphone / microphone combo jack (3.5mm);",
+        
+              "【Operating System】Windows 11 Home - Beautiful, more consistent new design, Great window layout options, Better multi-monitor functionality, Improved performance features, New videogame selection and capabilities, Compatible with Android Apps."
+            ],
+            "price": 50877.94,
+            "actualPrice": 64109.0,
+            "discountPercentage": 17.91,
+            "rating": 4.3,
+            "stock": 123,
+            "brand": "Lenovo",
+            "category": "laptops",
+            "Capacity": "20GB RAM | 1TB SSD + 128GB eMMC",
+            "color": "Black",
+            "thumbnail": "https://m.media-amazon.com/images/I/61ZCdzmymsL._AC_SX679_.jpg",
+            "images": [
+              "https://m.media-amazon.com/images/I/61ZCdzmymsL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/61lfdGSl1aL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/61iVSx8CTxL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/71q3b-MXbHL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/71bs2DIsneL._AC_SX679_.jpg"
+            ]
+          },
+          {
+            "id":901,
+            "title": "Dell Inspiron 3000",
+            "description": "Dell Inspiron 3000 Series 3511 Laptop, 15.6' FHD Touchscreen, Intel Core i5-1135G7, 32GB DDR4 RAM, 2TB PCIe SSD, Webcam, SD Card Reader, HDMI, Wi-Fi, Windows 11 Home, Black",
+        
+            "aboutItem": [
+              "【High Speed RAM And Enormous Space】32GB high-bandwidth RAM to smoothly run multiple applications and browser tabs all at once; 2TB PCIe NVMe M.2 Solid State Drive allows to fast bootup and data transfer",
+        
+              "【Processor】Celeron N4500 (Cores:2 Threads:2; Clockspeed:1.1 GHz Turbo Speed: 2.8GHz; Cache Size: L1: 4096 KB, L2: 12.0 MB, L3: 4 MB).",
+        
+              "【Display】15.6' FHD (1920x1080), 250nits, IPS-Level, Anti-glare.",
+        
+              "【Tech Specs】 1 x Card reader; 1 x HDMI 1.4b; 1 x USB 2.0; 1 x USB-C 3.2 Gen 1 (support data transfer only); 1 x USB 3.2 Gen 1; 1 x Headphone / microphone combo jack (3.5mm);",
+        
+              "【Operating System】Windows 11 Home - Beautiful, more consistent new design, Great window layout options, Better multi-monitor functionality, Improved performance features, New videogame selection and capabilities, Compatible with Android Apps."
+            ],
+            "price": 70877.94,
+            "actualPrice": 84109.0,
+            "discountPercentage": 17.91,
+            "rating": 4.3,
+            "stock": 123,
+            "brand": "Dell",
+            "category": "laptops",
+            "Capacity": "32GB RAM | 2TB SSD",
+            "color": "Black",
+            "thumbnail": "https://m.media-amazon.com/images/I/719yYrijeKL._AC_SX679_.jpg",
+            "images": [
+              "https://m.media-amazon.com/images/I/719yYrijeKL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/51XoF7FLJhL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/51jSx90XeCL._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/41jQ3UVw25L._AC_SX679_.jpg",
+              "https://m.media-amazon.com/images/I/410Al6xs2EL._AC_SX679_.jpg"
+            ]
+          },
         {
             "id":13,
             "title": "Motorola razr",
