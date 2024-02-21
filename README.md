@@ -1,5 +1,6 @@
 # ShopNook E-commerce (Frontend)
 ShopNook is a full-fledged e-commerce platform developed using the MERN stack (MongoDB, Express.js, React, Node.js). It provides users with a seamless shopping experience, featuring a responsive and user-friendly interface, robust backend, and secure authentication.
+[Backend](https://github.com/Divyanshu1020/ShopNook-Backend-.git)
 
 ## Table of Contents
 - [Screenshot ](#screenshots)
@@ -52,7 +53,7 @@ ShopNook is a full-fledged e-commerce platform developed using the MERN stack (M
    git clone https://github.com/Divyanshu1020/shopnook.git
    ```
     ```bash
-   git clone https://github.com/Divyanshu1020/shopnook.git
+   git clone https://github.com/Divyanshu1020/ShopNook-Backend-.git
    ```
 
 2. Navigate to the project directory:
