@@ -1,14 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useCart } from '../../context/cart.context';
 import './Product.css';
+import { Link } from 'react-router-dom';
+import { useCart } from '../../context/cart.context';
 import { convertInPricrFormate } from '../../helper/convertInPriceFormat';
 
 
 export default function Product({ title, description, price, thumbnail, id }) {
-
+  //* Context
   const { cart, setCart } = useCart();
-  const navigate = useNavigate();
 
   const addToCart = function () {
     const newItem = {
@@ -36,13 +35,11 @@ export default function Product({ title, description, price, thumbnail, id }) {
     }
 
   }
-  const productCardClickHandler = () => {
-    navigate(`product/${id}`)
-  }
 
   return (
     <div className='product-card' >
-      <div className='card-container' onClick={() => { productCardClickHandler() }}>
+    <Link to={`product/${id}`}>
+      <div className='card-container'>
         <div className="card-img">
           <img loading="lazy" src={thumbnail} alt="" />
         </div>
@@ -59,6 +56,7 @@ export default function Product({ title, description, price, thumbnail, id }) {
           ADD TO CART
         </button>
       </div>
+      </Link>
     </div>
   )
 }

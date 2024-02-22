@@ -6,17 +6,18 @@ import { FaCartPlus, FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "rea
 
 import { useParams } from 'react-router-dom';
 import { convertInPricrFormate } from '../../helper/convertInPriceFormat.js'
-import ProductData from '../../../data.json';
+// import ProductData from '../../../data.json';
 import { useCart } from '../../context/cart.context.jsx';
 import { useWishlist } from '../../context/wishlist.context.jsx';
+import axios from 'axios';
 
 
 
 
 export default function ProductDetail() {
     const [product, setProduct] = useState({})
-    const [price, setPrice] = useState();
-    const [actualPrice, setactualPrice] = useState();
+    // const [price, setPrice] = useState();
+    // const [actualPrice, setactualPrice] = useState();
     const [index, setIndex] = useState(0);
 
     //* Context
@@ -51,7 +52,7 @@ export default function ProductDetail() {
         }
 
     }
-    
+
     const addToWishlist = () => {
         const newItem = {
             id,
@@ -72,32 +73,39 @@ export default function ProductDetail() {
             setWishlist(preProducts => ([...preProducts, newItem]))
         }
     }
+    //* Fatching data from backend server
+    const fatchProductData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8000/api/v1/products/${id}`)
+            console.log("Response from product API", response.data.data);
+            setProduct(response.data.data)
+            console.log(product);
+        } catch (error) {
+            console.log("Error is produced when fetching product", error);
+        }
+    }
 
 
     useEffect(() => {
         // Call to server product based on id
-        const src = ProductData.find(product => product.id === Number(id));
+        fatchProductData()
 
         const index = wishlist.findIndex(product => (product?.id === id));
-        const formattedPrice = convertInPricrFormate(src?.price);
-        const formattedActualPrice = convertInPricrFormate(src?.actualPrice);
         setIndex(index)
-        setProduct(src);
-        setPrice(formattedPrice);
-        setactualPrice(formattedActualPrice);
 
-    }, [id, wishlist])
+
+    }, [id, wishlist,])
 
     return (
 
         <div className='singleProduct-page'>
             <div className='sp-container-main'>
                 <div className="sp-container-left">
-                    <img src={`${product.thumbnail}`} alt="" />
+                    <img src={product.thumbnail} alt="" />
                 </div>
                 <div className="sp-container-right">
                     <div className='sp-container-right-top'>
-                        <div className="name">{`${product.description}`}</div>
+                        <div className="name">{product.description}</div>
 
                         <BiLike
                             className={`sp-container-right-top-like-btn ${index >= 0 ? "like" : ""} `}
@@ -105,8 +113,8 @@ export default function ProductDetail() {
                         />
                     </div>
                     <div className='prices'>
-                        <div className="price"> {`${price}`}</div>
-                        <div className="actual price"> {`${actualPrice}`}</div>
+                        <div className="price"> {convertInPricrFormate(Number(product.price))}</div>
+                        <div className="actual price"> {convertInPricrFormate(Number(product.actualPrice))}</div>
                     </div>
                     <div className="des">
                         {<ul>

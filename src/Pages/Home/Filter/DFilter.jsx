@@ -12,7 +12,7 @@ export default function Filter() {
     {
       id : "Cat4",
       title : "Brands",
-      options : ["dg"]
+      options : []
     },
     {
       id: "Cat2",
