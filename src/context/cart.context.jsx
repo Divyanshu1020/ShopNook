@@ -5,6 +5,7 @@ const CartContext = createContext()
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([])
     const [cartUpdate, setCartUpdate] = useState()
+    
 
     useEffect(() => {
         const timeout = setTimeout( ()=>{
