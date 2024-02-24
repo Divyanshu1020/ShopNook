@@ -1,31 +1,29 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import './ProductDetail.css';
 //* Icons 
 import { BiLike } from 'react-icons/bi';
 import { FaCartPlus, FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-
-import { useParams } from 'react-router-dom';
-import { convertInPricrFormate } from '../../helper/convertInPriceFormat.js'
-// import ProductData from '../../../data.json';
+//* Context API
 import { useCart } from '../../context/cart.context.jsx';
 import { useWishlist } from '../../context/wishlist.context.jsx';
+//* Services
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+//* Helper functions
+import { convertInPricrFormate } from '../../helper/convertInPriceFormat.js'
 
 
 
 
 export default function ProductDetail() {
     const [product, setProduct] = useState({})
-    // const [price, setPrice] = useState();
-    // const [actualPrice, setactualPrice] = useState();
-    const [index, setIndex] = useState(0);
-
     //* Context
-    const { cart, setCart, setUpdate } = useCart();
-    const { wishlist, setWishlist } = useWishlist();
-
+    const { cart, setCart, setCartUpdate } = useCart();
+    const { wishlist, setWishlist, setWishlistUpdate } = useWishlist();
+    
     const { id } = useParams();
-
+    const index = wishlist.findIndex(product => (product?.id === id));
 
     const addToCart = () => {
         const newItem = {
@@ -42,23 +40,23 @@ export default function ProductDetail() {
             setCart(preProducts => (
                 preProducts.map(
                     item => {
-                        if (item.id === id) 
-                        {
-                          const newQuantity = item.quantity + 1;
-                          setUpdate({ id, quantity: newQuantity })
-                          return item.id === id ? { ...item, quantity: newQuantity } : item
+                        if (item.id === id) {
+                            const newQuantity = item.quantity + 1;
+                            setCartUpdate({ id, quantity: newQuantity })
+                            return item.id === id ? { ...item, quantity: newQuantity } : item
                         }
                     }
                 )
             ))
         } else {
             setCart(preProducts => ([...preProducts, newItem]))
-            setUpdate({ id, quantity: 1 })
+            setCartUpdate({ id, quantity: 1 })
         }
 
     }
 
     const addToWishlist = () => {
+
         const newItem = {
             id,
             title: product.title,
@@ -67,39 +65,34 @@ export default function ProductDetail() {
             thumbnail: product.thumbnail,
         }
 
-
-
         if (index >= 0) {
             const updateWishlist = [...wishlist];
             updateWishlist.splice(index, 1);
             setWishlist(updateWishlist);
+            // Todo:- make api call to remove product from whish list in database
+            setWishlistUpdate("remove", id)
 
         } else {
             setWishlist(preProducts => ([...preProducts, newItem]))
+            // Todo make api call to add product from whish list in database
+            setWishlistUpdate("add", id)
         }
     }
+    
     //* Fatching data from backend server
-    const fatchProductData = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8000/api/v1/products/${id}`)
-            console.log("Response from product API", response.data.data);
-            setProduct(response.data.data)
-            console.log(product);
-        } catch (error) {
-            console.log("Error is produced when fetching product", error);
-        }
-    }
-
-
     useEffect(() => {
-        // Call to server product based on id
+        const fatchProductData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8000/api/v1/products/${id}`)
+                console.log("Response from product API", response.data.data);
+                setProduct(response.data.data)
+                console.log(product);
+            } catch (error) {
+                console.log("Error is produced when fetching product", error);
+            }
+        }
         fatchProductData()
-
-        const index = wishlist.findIndex(product => (product?.id === id));
-        setIndex(index)
-
-
-    }, [id, wishlist,])
+    }, [id, product])
 
     return (
 
