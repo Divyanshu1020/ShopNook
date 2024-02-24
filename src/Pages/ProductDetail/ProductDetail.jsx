@@ -21,7 +21,7 @@ export default function ProductDetail() {
     const [index, setIndex] = useState(0);
 
     //* Context
-    const { cart, setCart } = useCart();
+    const { cart, setCart, setUpdate } = useCart();
     const { wishlist, setWishlist } = useWishlist();
 
     const { id } = useParams();
@@ -41,14 +41,19 @@ export default function ProductDetail() {
         if (existingProduct) {
             setCart(preProducts => (
                 preProducts.map(
-                    item => (
-                        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-                    )
+                    item => {
+                        if (item.id === id) 
+                        {
+                          const newQuantity = item.quantity + 1;
+                          setUpdate({ id, quantity: newQuantity })
+                          return item.id === id ? { ...item, quantity: newQuantity } : item
+                        }
+                    }
                 )
             ))
         } else {
             setCart(preProducts => ([...preProducts, newItem]))
-
+            setUpdate({ id, quantity: 1 })
         }
 
     }
