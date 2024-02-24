@@ -4,18 +4,18 @@ const CartContext = createContext()
 
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([])
-    const [update, setUpdate] = useState()
+    const [cartUpdate, setCartUpdate] = useState()
 
     useEffect(() => {
         const timeout = setTimeout( ()=>{
-            if(update) console.log("api call", update);
+            if(cartUpdate) console.log("api call", cartUpdate);
         },1000)
         return ()=> clearTimeout(timeout);
 
-    }, [update])
+    }, [cartUpdate])
 
     return (
-        <CartContext.Provider value={{ cart, setCart, update, setUpdate }}>
+        <CartContext.Provider value={{ cart, setCart, setCartUpdate }}>
             {children}
         </CartContext.Provider>
     )

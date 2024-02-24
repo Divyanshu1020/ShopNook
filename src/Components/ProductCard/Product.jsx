@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../context/cart.context';
 import { convertInPricrFormate } from '../../helper/convertInPriceFormat';
@@ -6,10 +6,10 @@ import './Product.css';
 
 
 export default function Product({ title, description, price, thumbnail, id }) {
-  const { cart, setCart, setUpdate } = useCart();
-
+  const { cart, setCart, setCartUpdate } = useCart();
 
   const addToCart = function () {
+    
     const newItem = {
       id,
       title,
@@ -27,7 +27,7 @@ export default function Product({ title, description, price, thumbnail, id }) {
           item => {
             if (item.id === id) {
               const newQuantity = item.quantity + 1;
-              setUpdate({ id, quantity: newQuantity })
+              setCartUpdate({ id, quantity: newQuantity })
               return item.id === id ? { ...item, quantity: newQuantity } : item
             }
           }
@@ -36,7 +36,7 @@ export default function Product({ title, description, price, thumbnail, id }) {
     } else {
       //* Add new product in cartContext
       setCart(preProducts => ([...preProducts, newItem]));
-      setUpdate({ id, quantity: 1 })
+      setCartUpdate({ id, quantity: 1 })
     }
   }
 
