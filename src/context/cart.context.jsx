@@ -9,7 +9,10 @@ const CartProvider = ({ children }) => {
 
     useEffect(() => {
         const timeout = setTimeout( ()=>{
-            if(cartUpdate) console.log("api call", cartUpdate);
+            //* This prevents api call in fast loading
+            if(cartUpdate){
+                // Todo Make api call to backend to update user cart
+            }
         },1000)
         return ()=> clearTimeout(timeout);
 
