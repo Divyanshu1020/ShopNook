@@ -13,12 +13,12 @@ const ProductDetail = lazy(() => import('./Pages/ProductDetail/ProductDetail'))
 const Login = lazy(() => import('./Pages/Login/Login'));
 const Signup = lazy(() => import('./Pages/Signup/Signup'));
 const Cart = lazy(() => import('./Pages/Cart/Cart'));
+const Wishlist = lazy( ()=> import('./Pages/Wishlist/Wishlist'))
 
 
 //* Components
 import Layout from './Components/Layout/Layout'
 import ScrollToTop from './helper/ScrollToTop'
-import Wishlist from './Pages/Wishlist/Wishlist'
 
 function App() {
   return (
