@@ -9,8 +9,7 @@ export default function List() {
   const deleteWishlistItems = (index) => {
     const updateWishlist = [...wishlist];
     updateWishlist.splice(index, 1);
-    console.log(updateWishlist);
-    // setWishlist(updateWishlist)
+    setWishlist(updateWishlist)
   }
   return (
     <Background >
