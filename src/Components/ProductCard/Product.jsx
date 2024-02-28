@@ -1,22 +1,34 @@
-import React  from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/cart.context';
 import { convertInPricrFormate } from '../../helper/convertInPriceFormat';
 import './Product.css';
+import { useUser } from '../../context/user.context';
 
 
 export default function Product({ title, description, price, thumbnail, id }) {
-  const { cart, setCart, setCartUpdate } = useCart();
+  const { cart, setCart, setCartUpdate, setCartLength } = useCart();
+  const { user } = useUser();
+
+  const navigate = useNavigate();
 
   const addToCart = function () {
-    
+
+    if(!user){
+      alert("Please login first");
+      navigate("/login");
+      return;
+    } 
+
     const newItem = {
-      id,
-      title,
-      description,
-      price,
-      quantity: 1,
-      thumbnail,
+      productId: id,
+      productQuantity: 1,
+      productDetails: {
+        description,
+        price,
+        actualPrice: 0,
+        thumbnail,
+      },
     }
     //* check if the product is already in the cart
     const existingProduct = cart.find(product => (product?.id === id));
@@ -26,9 +38,9 @@ export default function Product({ title, description, price, thumbnail, id }) {
         preProducts.map(
           item => {
             if (item.id === id) {
-              const newQuantity = item.quantity + 1;
+              const newQuantity = item.productQuantity + 1;
               setCartUpdate({ id, quantity: newQuantity })
-              return item.id === id ? { ...item, quantity: newQuantity } : item
+              return item.id === id ? { ...item, productQuantity: newQuantity } : item
             }
           }
         )
@@ -36,6 +48,7 @@ export default function Product({ title, description, price, thumbnail, id }) {
     } else {
       //* Add new product in cartContext
       setCart(preProducts => ([...preProducts, newItem]));
+      setCartLength(pre => (pre + 1))
       setCartUpdate({ id, quantity: 1 })
     }
   }

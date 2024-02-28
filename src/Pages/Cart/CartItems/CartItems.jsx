@@ -13,24 +13,23 @@ export default function CartItems() {
 
     return (
         <Background >
+            <Container>
+                <h1>Shopping Cart</h1>
                 <Container>
-                    <h1>Shopping Cart</h1>
-                    <Container>
-                        {cart.map((product, index) => (
-                            <ListComponent
-                                key={product.id}
-                                id={product.id}
-                                index={index}
-                                title={product.title}
-                                description={product.description}
-                                price={product.price}
-                                thumbnail={product.thumbnail}
-                                quantity={product.quantity}
-                                deleteCartItems={deleteCartItems}
-                            />
-                        ))}
-                    </Container>
+                    {cart.map((product, index) => (
+                        <ListComponent
+                            key={product.productId}
+                            id={product.productId}
+                            index={index}
+                            description={product.productDetails.description}
+                            price={product.productDetails.price}
+                            thumbnail={product.productDetails.thumbnail}
+                            quantity={product.productQuantity}
+                            deleteCartItems={deleteCartItems}
+                        />
+                    ))}
                 </Container>
+            </Container>
         </Background>
 
     )

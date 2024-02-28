@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 export default function ListComponent(props) {
     const { description, price, thumbnail, quantity, deleteCartItems, id, index } = props;
     const { setCart } = useCart()
-    const [total, setTotal] = useState(0)
+    const [total, setTotal] = useState('')
     const [productQuantity, setProductQuantity] = useState(quantity)
     const [userProductQuantityInput, setUserProductQuantityInput] = useState(quantity)
 
@@ -19,7 +19,7 @@ export default function ListComponent(props) {
         //* This update product quantity in cart context 
         setCart((pre) => (
             pre.map((item) => (
-                item.id === id ? { ...item, quantity: productQuantity } : item
+                item.id === id ? { ...item, productQuantity: productQuantity } : item
             ))
         ))
     }, [productQuantity, price, setCart, id])
@@ -28,12 +28,6 @@ export default function ListComponent(props) {
     const submiteProductQuantity = (e) => {
         e.preventDefault();
         setProductQuantity(userProductQuantityInput);
-        setCart((pre) => (
-            pre.map((item) => (
-                item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-            ))
-        ))
-
     }
 
     //* Handler for (-) Minus product quantity

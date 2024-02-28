@@ -23,7 +23,7 @@ export default function Navbar() {
   const [searchShow, setSearchShow] = useState(false);
   const [menuShow, setMenuShow] = useState(false)
 
-  const { cart } = useCart()
+  const { cartLength } = useCart()
   const { user } = useUser()
 
   const navigate = useNavigate();
@@ -89,7 +89,7 @@ export default function Navbar() {
                   <Link to='/cart'>
                     <span className='cart-icon'>
                       <BiCart className='right-icon' />
-                      <span>{cart.length}</span>
+                      <span>{cartLength}</span>
                     </span>
                   </Link>
                   <FaRegUser className='right-icon user-icon'
