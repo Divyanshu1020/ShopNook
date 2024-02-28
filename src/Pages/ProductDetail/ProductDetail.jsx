@@ -92,7 +92,7 @@ export default function ProductDetail() {
             }
         }
         fatchProductData()
-    }, [id, product])
+    }, [id])
 
     return (
 

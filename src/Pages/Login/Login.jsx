@@ -7,6 +7,7 @@ import { useUser } from '../../context/user.context';
 
 // Icons
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { useCart } from '../../context/cart.context';
 
 export default function Login() {
     const [errorMessage, seteErrorMessage] = useState('');
@@ -14,7 +15,8 @@ export default function Login() {
     const inputValue = useRef([]);
     const navigate = useNavigate()
 
-    const { user, setUser } = useUser();
+    const { setUser } = useUser();
+    const { setCartLength } = useCart();
 
     useEffect(() => {
         inputValue.current[0].focus();
@@ -50,38 +52,42 @@ export default function Login() {
 
     async function loginHandler(e) {
         e.preventDefault();
+        seteErrorMessage('')
 
         const email = inputValue.current[0]?.value;
         const password = inputValue.current[1]?.value;
-
+        console.log(email, password);
 
 
         // @ts-ignore
 
 
-        if (!(email || password)) {
+        if (!email || !password) {
             seteErrorMessage('Please enter a valid email and password');
+            return
         }
 
 
         try {
+            
             setButtonDisable(true);
 
             await axios
                 .post('http://localhost:8000/api/v1/users/login', { email: email, password: password }, { withCredentials: true })
                 .then((response) => {
-                    setUser(response.data.user)
+                    setUser(response.data.user);
+                    setCartLength(response.data.user.cart.length);
                     navigate('/')
                     console.log(response.data);
 
                 })
 
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
+            seteErrorMessage(error.message)
             setButtonDisable(false);
-
-
         }
+
         setButtonDisable(false)
     }
     return (
@@ -91,9 +97,9 @@ export default function Login() {
                     <IoIosArrowRoundBack className='arrow' /> Back to home
                 </Link>
             </div>
-
             <Container>
                 <span className="input-hader">Welcome back!</span>
+
                 <form onSubmit={(e) => { loginHandler(e) }}>
 
                     <div className='inputs'>
@@ -116,6 +122,7 @@ export default function Login() {
                             disabled={buttonDisable}
                         />
                     </div>
+
                     <div className='forget'><Link to={'/forgetPassword'}>Forget your password?</Link></div>
                     <div className='signBTN'>
                         <button
@@ -124,16 +131,12 @@ export default function Login() {
                             type='submit'
                             disabled={buttonDisable}
                         >Login</button>
-
-                        <p className="linkp">Not registered? <Link to={'/signup'}>Creat account</Link></p>
+                        <p className="signup-link">Not registered? <Link to={'/signup'}>Creat account</Link></p>
+                        <p className='error'>{errorMessage}</p>
                     </div>
                 </form>
-
             </Container >
-            {/* <pre>{JSON.stringify(user, null, 4)}</pre> */}
-
         </Background >
-
     )
 }
 
@@ -171,20 +174,12 @@ const Container = styled.div`
 
     width: 100%;
     max-width: 500px; 
-    /* min-height: 550px;  */
-    /* margin: 50px auto; */
 
-
-    /* border: 1px solid black; */
     border-radius: 1rem;
-    /* box-shadow: 0 2px 40px #555; */
-    
-    
     
     padding: 2rem 1.5rem;
     overflow: hidden;
 
-    
     span{
         font-size: 1.5rem;
         color: #000000b5;
@@ -243,7 +238,7 @@ const Container = styled.div`
                 }
             }
             
-            p{
+            .signup-link{
                 margin-top: 1.5rem;
                 color: #878787;
                 a{
@@ -251,12 +246,11 @@ const Container = styled.div`
                     color: #8e2dec;
                 }
             }
+            .error{
+                color: #ff0000b5;
+                height: 10px;
+            }
         }
     }
 
 `
-const Input = styled.div`
-    
-`
-const Input_Container = styled.div``
-const Input_Group = styled.div``
