@@ -13,25 +13,24 @@ export default function GetCurrentUser() {
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
-
-                const response = await axios.get("http://localhost:8000/api/v1/users/current-user", { withCredentials: true });
-                setUser(response.data.user);
-                setCartLength(response.data.user.cart.length);
-                // localStorage.setItem("cart", JSON.stringify(response.data.user.cart)); 
-                console.log(response.data.user.cart.length);
+                if(!user || user === null){
+                    const response = await axios.get("http://localhost:8000/api/v1/users/current-user", { withCredentials: true });
+                    setUser(response.data.user);
+                    setCartLength(response.data.user.cart.length);
+                    console.log('Api call fetchCurrentUser '); 
+                }
 
             } catch (err) {
                 console.error("Error fetching current user:", err);
-                // Handle the error, e.g., show an error message to the user
             } finally {
                 setLoading(false);
             }
         };
 
-        
-         fetchCurrentUser();
+
+        fetchCurrentUser();
 
     }, []);
 
-    return loading ? <Loading/> : <App />;
+    return loading ? <Loading /> : <App />;
 }
