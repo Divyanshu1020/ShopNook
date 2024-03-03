@@ -16,6 +16,29 @@
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 0px;
 }
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
+
+.center .noNetwork {
+  transform: scale(8);
+  margin-bottom: 60px;
+  color: rgb(255, 87, 87);
+}
+.center .search {
+  transform: scale(8);
+  margin-bottom: 60px;
+  color: #6b6b6b;
+}
+.center h1 {
+  color: rgb(255, 87, 87);
+}
 .sp-container-main .sp-container-left {
   /* height: 600px; */
   width: 40%;

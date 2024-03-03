@@ -70,7 +70,7 @@ export default function ListComponent(props) {
                     <span >{total}</span>
                 </div>
                 <div>
-                    <MdDelete className='delete' onClick={() => { deleteCartItems(index) }} />
+                    <MdDelete className='delete' onClick={() => { deleteCartItems(index, id) }} />
                 </div>
             </Right>
 

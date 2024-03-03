@@ -2,13 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import { useCart } from '../../../context/cart.context'
 import ListComponent from './ListComponent'
+import useApi from '../../../util/useApi'
 
 export default function CartItems() {
-    const { cart, setCart } = useCart()  //* cart context
-    const deleteCartItems = (index) => {
+    const { cart, setCart, setCartLength } = useCart()  //* cart context
+    const { deleteCartItem } = useApi()
+    const deleteCartItems = (index, id) => {
         const updatedCart = [...cart];
         updatedCart.splice(index, 1);
         setCart(updatedCart);
+
+        deleteCartItem(id)
+        setCartLength(pre => (pre - 1))
     }
 
     return (

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import './ProductDetail.css';
 //* Icons 
 import { BiLike } from 'react-icons/bi';
@@ -11,20 +11,22 @@ import { convertInPricrFormate } from '../../helper/convertInPriceFormat.js';
 import useApi from '../../util/useApi.jsx';
 import useUpdateContext from '../../util/useUpdateContext.jsx';
 
-
+import { IoAlertCircleOutline } from "react-icons/io5";
+import { BsSearch } from 'react-icons/bs';
 
 
 export default function ProductDetail() {
     const [product, setProduct] = useState({})
-    //* Context
-
-    const { wishlist, setWishlist, setWishlistUpdate } = useWishlist();
+    const [error, setError] = useState(false)
+    const [searching, setSearching] = useState(false)
+    const [isInWishlist, setIsInWishlist] = useState()
 
     const { id } = useParams();
 
     const { updateCart } = useUpdateContext()
-    const { fatchProductData } = useApi()
-    const index = wishlist.findIndex(product => (product?.id === id));
+    const { fatchProductData, debouncedAddWishlistItem, debouncedRemoveWishlistItem } = useApi()
+    
+    
 
     const addToCart = () => {
         const newItem = {
@@ -41,57 +43,65 @@ export default function ProductDetail() {
     }
 
     const addToWishlist = () => {
+        setIsInWishlist(!isInWishlist)
 
-        const newItem = {
-            _id: id,
-            title: product.title,
-            description: product.description,
-            price: product.price,
-            thumbnail: product.thumbnail,
-        }
 
-        if (index >= 0) {
-            const updateWishlist = [...wishlist];
-            updateWishlist.splice(index, 1);
-            setWishlist(updateWishlist);
-            // Todo:- make api call to remove product from whish list in database
-            setWishlistUpdate("remove", id)
-
-        } else {
-            setWishlist(preProducts => ([...preProducts, newItem]))
-            // Todo make api call to add product from whish list in database
-            setWishlistUpdate("add", id)
-        }
+        if(isInWishlist){
+            debouncedRemoveWishlistItem(id)            
+        }else {
+            debouncedAddWishlistItem(id)
+        }    
+        
     }
 
     //* Fatching data from backend server
-    useEffect(() => {
+    useLayoutEffect(() => {
 
         const fetchData = async () => {
-
+            setSearching(true)
             const response = await fatchProductData(id);
             console.log(response);
-            if (response) {
-                setProduct(response); // Set the product if response is not null
+
+            if (response.data) {
+                setSearching(false)
+                setProduct(response.data);
+                setIsInWishlist(response.data.isInWishlist)
+                return
+            }
+            if (response.error) {
+                setError(true);
+                return
             }
         }
 
         fetchData();
-    }, [fatchProductData, id])
+    }, [])
 
-    return (
 
+    return searching ? (
+        <div className='singleProduct-page'>
+            <div className='sp-container-main center' >
+                {error ?
+                    (<>
+                        <IoAlertCircleOutline className='noNetwork' />
+                        <h1>No Network</h1>
+                    </>) :
+                    (<BsSearch className='search' />)}
+            </div>
+        </div>
+
+    ) : (
         <div className='singleProduct-page'>
             <div className='sp-container-main'>
                 <div className="sp-container-left">
                     <img src={product.thumbnail} alt="" />
-                </div>
+                </div >
                 <div className="sp-container-right">
                     <div className='sp-container-right-top'>
                         <div className="name">{product.description}</div>
 
                         <BiLike
-                            className={`sp-container-right-top-like-btn ${index >= 0 ? "like" : ""} `}
+                            className={`sp-container-right-top-like-btn ${isInWishlist ? "like" : ""}  `}
                             onClick={() => { addToWishlist() }}
                         />
                     </div>
@@ -132,7 +142,7 @@ export default function ProductDetail() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
             <div className='products'>
                 <div className="products-headline">Related Product</div>
                 <div className="products-group-conatiner">
@@ -140,7 +150,7 @@ export default function ProductDetail() {
                 </div>
             </div>
 
-        </div>
+        </div >
 
 
 

@@ -18,8 +18,8 @@ export default function List() {
         <Container>
           {wishlist.map((product, index) => (
             <ListComponent
-              key={product.id}
-              id={product.id}
+              key={product._id}
+              id={product._id}
               index={index}
               title={product.title}
               description={product.description}
