@@ -13,6 +13,7 @@ import useUpdateContext from '../../util/useUpdateContext.jsx';
 
 import { IoAlertCircleOutline } from "react-icons/io5";
 import { BsSearch } from 'react-icons/bs';
+import { useUser } from '../../context/user.context.jsx';
 
 
 export default function ProductDetail() {
@@ -21,12 +22,14 @@ export default function ProductDetail() {
     const [searching, setSearching] = useState(false)
     const [isInWishlist, setIsInWishlist] = useState()
 
+
+
     const { id } = useParams();
 
     const { updateCart } = useUpdateContext()
     const { fatchProductData, debouncedAddWishlistItem, debouncedRemoveWishlistItem } = useApi()
-    
-    
+
+
 
     const addToCart = () => {
         const newItem = {
@@ -46,12 +49,12 @@ export default function ProductDetail() {
         setIsInWishlist(!isInWishlist)
 
 
-        if(isInWishlist){
-            debouncedRemoveWishlistItem(id)            
-        }else {
+        if (isInWishlist) {
+            debouncedRemoveWishlistItem(id)
+        } else {
             debouncedAddWishlistItem(id)
-        }    
-        
+        }
+
     }
 
     //* Fatching data from backend server
@@ -73,7 +76,6 @@ export default function ProductDetail() {
                 return
             }
         }
-
         fetchData();
     }, [])
 

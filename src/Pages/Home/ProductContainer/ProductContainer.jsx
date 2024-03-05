@@ -13,6 +13,8 @@ export default function ProductContainer() {
 
   const [productData, setProductData] = useState([])
   const { fatchAllProducts } = useApi();
+
+  //* Fatching products
   useEffect(() => {
 
     const fetchData = async () => {

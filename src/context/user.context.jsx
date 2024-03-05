@@ -9,7 +9,7 @@ const UserContext = createContext(null)
 
 const UserProvider = ({ children }) => {
 
-    const [user, setUser] = useState("mn")
+    const [user, setUser] = useState()
     const userP = user ? "userIsLogedIn" : "userIsNotLoggedIn"
     console.log(userP);
     return (

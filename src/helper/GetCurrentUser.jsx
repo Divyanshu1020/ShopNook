@@ -21,11 +21,11 @@ export default function GetCurrentUser() {
                 }
 
             } catch (err) {
-                console.error("Error fetching current user:", err);
+                console.warn("Error fetching current user:", err);
             } finally {
                 setLoading(false);
             }
-        };
+        };  
 
 
         fetchCurrentUser();

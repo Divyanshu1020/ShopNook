@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createContext, useContext, useState } from "react";
 import useApi from '../util/useApi';
-const CartContext = createContext(null)
+const CartContext = createContext()
 
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([])
@@ -12,7 +12,7 @@ const CartProvider = ({ children }) => {
 
     useEffect(() => {
         //* This prevents api call in fast loading
-        const timeout = setTimeout(async() => {
+        const timeout = setTimeout(async () => {
             cartUpdateApi(cartUpdate);
         }, 1000)
         return () => clearTimeout(timeout);

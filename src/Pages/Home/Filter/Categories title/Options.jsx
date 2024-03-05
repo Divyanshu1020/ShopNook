@@ -10,9 +10,8 @@ export default function Options(props) {
                 type="radio"
                 name={title}
                 value={option}
+                onClick={(e)=>console.log(e.currentTarget.value)}
                 id={option}
-                // checked={isChecked}
-                // onChange={isCheckFun} 
                  />
             <label htmlFor={option} >
                 <span>{option}</span>

@@ -3,28 +3,28 @@ import styled from 'styled-components';
 import CategoriesTitle from './Categories title/CategoriesTitle';
 
 export default function Filter() {
-  const[categories] = useState([
+  const [categories] = useState([
     {
       id: "Cat1",
-      title : "Products",
-      options : ["Laptop", "Phone", "Earbuds/Headphones", "SmartWatch", "PCs", "TV","Monitor","Console" ]
+      title: "Products",
+      options: ["Laptop", "Phone", "Earbuds/Headphones", "SmartWatch", "PCs", "TV", "Monitor", "Console"]
     },
     {
-      id : "Cat4",
-      title : "Brands",
-      options : []
+      id: "Cat4",
+      title: "Brands",
+      options: ["Apple", "Motorola", "BLU", "OnePlus"]
     },
     {
       id: "Cat2",
-      title : "Prices",
-      options : ["₹ 10000 to ₹ 20000", "₹ 20000 to ₹ 40000", "₹ 40000 to ₹ 70000", "₹ 70000 to ₹ 100000","₹ 150000 to ₹ 200000" ,"₹ 200000   & above"]
+      title: "Prices",
+      options: ["₹ 10000 to ₹ 20000", "₹ 20000 to ₹ 40000", "₹ 40000 to ₹ 70000", "₹ 70000 to ₹ 100000", "₹ 150000 to ₹ 200000", "₹ 200000   & above"]
     },
     {
       id: "Cat3",
-      title : "Condition",
-      options : ["New","Old"]
+      title: "Condition",
+      options: ["New", "Old"]
     },
-  
+
   ])
   return (
     <Container>
