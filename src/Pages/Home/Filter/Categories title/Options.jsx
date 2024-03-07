@@ -1,25 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { MdOutlineDone } from "react-icons/md";
+
 
 export default function Options(props) {
-    const {option, title} = props
-    return (
-        <ListOption className='option'>
-           <input
-                type="radio"
-                name={title}
-                value={option}
-                onClick={(e)=>console.log(e.currentTarget.value)}
-                id={option}
-                 />
-            <label htmlFor={option} >
-                <span>{option}</span>
-                
-                
-            </label>
-        </ListOption>
-    )
+  const { option, title, setApiCalled, apiCalled, handleChange, isChecked } = props
+
+
+  //* Make API call here
+  const handleRadioClick = (value) => {
+    if (value !== apiCalled) {
+      console.log('API call triggered for option:', option);
+      setApiCalled(value);
+    }
+  };
+  return (
+    <ListOption className='option'>
+      {/* <button>X</button> */}
+      <input
+        type="radio"
+        name={title}
+        value={option}
+        onClick={(e) => {
+          handleRadioClick(e.currentTarget.value)
+          handleChange(e)
+        }
+        }
+        checked={option === isChecked}
+        id={option}
+      />
+      <label htmlFor={option} >
+        <span>{option}</span>
+      </label>
+
+    </ListOption>
+  )
 }
 
 const ListOption = styled.li`

@@ -8,28 +8,42 @@ import { MdOutlineExpandMore } from "react-icons/md";
 import Options from './Options';
 
 export default function CategoriesTitle(props) {
-  const {title, options} = props
-    const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const { title, options } = props
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [apiCalled, setApiCalled] = useState("");
+  const [isChecked, setIsChecked] = useState("");
+
+
 
   const handleDropdownToggle = () => {
     setDropdownOpen(!isDropdownOpen);
   };
+
+  const handleChange = (event) => {
+    setIsChecked(event.target.value)
+  }
+  
   return (
     <List className="select-categories" >
-          <div className="selectBT" onClick={()=>{handleDropdownToggle()}}>
-            <span className='title'>{title}</span>
-            <MdOutlineExpandMore className={`done ${isDropdownOpen? 'doneDown': ''}`} />
-          </div>
-          <ul className={`list ${isDropdownOpen? 'dropdownOpen': ''}`} >
-            {options.map((option, index)=>(
-              <Options
-                key = {index}
-                option = {option}
-                title = {title}
-              />
-            ))}
-          </ul>
-        </List>
+      <div className="selectBT" onClick={() => { handleDropdownToggle() }}>
+        <span className='title'>{title}</span>
+        <MdOutlineExpandMore className={`done ${isDropdownOpen ? 'doneDown' : ''}`} />
+      </div>
+      <ul className={`list ${isDropdownOpen ? 'dropdownOpen' : ''}`} >
+        {options.map((option, index) => (
+          <Options
+            key={index}
+            option={option}
+            title={title}
+            apiCalled={apiCalled}
+            setApiCalled={setApiCalled}
+            handleChange={handleChange}
+            isChecked={isChecked}
+          />
+        ))}
+        <button onClick={()=> {setIsChecked(""); setApiCalled("")}}>clear</button>
+      </ul>
+    </List>
   )
 }
 
