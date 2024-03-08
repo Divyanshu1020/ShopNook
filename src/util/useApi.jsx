@@ -2,10 +2,12 @@ import React from 'react';
 
 import axios from 'axios';
 import { useUser } from '../context/user.context';
+import { useProductList } from '../context/product.context';
 
 export default function useApi() {
 
   const { user } = useUser()
+  const { query } = useProductList()
 
   const debounce = (func, delay) => {
     let timeoutId;
@@ -89,9 +91,13 @@ export default function useApi() {
 
   //* Product APIs
   const fatchProductData = async (id) => {
+    let userId = "";
+    if(user){
+      userId = user.userId;
+    }
     try {
       const response = await axios.post(`http://localhost:8000/api/v1/products/getProductById/${id}`, {
-        userId: user.userId
+        userId: userId
       });
       return { data: response.data.data[0] };
     } catch (error) {
@@ -99,11 +105,14 @@ export default function useApi() {
       return { error: true, code: error.code };
     }
   }
-  
-  
+
+
   const fatchAllProducts = async () => {
+    // ?page=${query.page}&categorie=${query.categorie}&band=${query.band}
+
     try {
-      const response = await axios.get("http://localhost:8000/api/v1/products", { withCredentials: true })
+      const response = await axios.get(`http://localhost:8000/api/v1/products?page=${query.page}&categorie=${query.categorie}&brand=${query.brand}`, 
+      { withCredentials: true })
       return response.data.data
     } catch (error) {
       console.log("Error is produced when fetching product", error);
