@@ -73,7 +73,7 @@ export default function Login() {
             setButtonDisable(true);
 
             await axios
-                .post('http://localhost:8000/api/v1/users/login', { email: email, password: password }, { withCredentials: true })
+                .post('http://localhost:8000/api/v1/users/login', { email: email, password: password },{ withCredentials: true })
                 .then((response) => {
                     setUser(response.data.user);
                     setCartLength(response.data.user.cart.length);
