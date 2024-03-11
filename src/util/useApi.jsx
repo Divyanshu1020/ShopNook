@@ -92,7 +92,7 @@ export default function useApi() {
   //* Product APIs
   const fatchProductData = async (id) => {
     let userId = "";
-    if(user){
+    if (user) {
       userId = user.userId;
     }
     try {
@@ -110,9 +110,28 @@ export default function useApi() {
   const fatchAllProducts = async () => {
     // ?page=${query.page}&categorie=${query.categorie}&band=${query.band}
 
+
+    let page = query.page ? query.page : 1
+    let url = `http://localhost:8000/api/v1/products?page=${page}`
+
+    if (query.categorie) {
+      console.log("caling api", query.categorie);
+      return
+      // url += `&categorie=${query.categorie}`
+    }
+
+    if (query.brand) {
+      console.log("calling", query.brand);
+      return
+      // url += `&brand=${query.brand}`
+    }
+
+    console.log(page);
     try {
-      const response = await axios.get(`http://localhost:8000/api/v1/products?page=${query.page}&categorie=${query.categorie}&brand=${query.brand}`, 
-      { withCredentials: true })
+      const response = await axios.get(
+        url,
+        { withCredentials: true }
+      )
       return response.data.data
     } catch (error) {
       console.log("Error is produced when fetching product", error);
