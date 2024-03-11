@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import useApi from '../../../../util/useApi';
 
 
 export default function Options(props) {
   const { option, title, setApiCalled, apiCalled, handleChange, isChecked } = props
-
+  const {fatchAllProducts} = useApi()
 
   //* Make API call here
   const handleRadioClick = (value) => {
     if (value !== apiCalled) {
-      console.log('API call triggered for option:', option);
-      setApiCalled(value);
+
+      
+      if (title === "Products"){
+        fatchAllProducts({categorie : value})
+      }
+
+      if(title === "Brands"){
+        fatchAllProducts({brand : value})
+      }
+
+
+
+        //* This thing help me to prevent second call 
+        setApiCalled(value);
     }
   };
   return (
@@ -20,11 +33,8 @@ export default function Options(props) {
         type="radio"
         name={title}
         value={option}
-        onClick={(e) => {
-          handleRadioClick(e.currentTarget.value)
-          handleChange(e)
-        }
-        }
+        onClick={(e) => { handleRadioClick(e.currentTarget.value) }}
+        onChange={(e) => { handleChange(e) }}
         checked={option === isChecked}
         id={option}
       />

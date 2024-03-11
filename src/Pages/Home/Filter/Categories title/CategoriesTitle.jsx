@@ -13,8 +13,6 @@ export default function CategoriesTitle(props) {
   const [apiCalled, setApiCalled] = useState("");
   const [isChecked, setIsChecked] = useState("");
 
-
-
   const handleDropdownToggle = () => {
     setDropdownOpen(!isDropdownOpen);
   };

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import './ProductContainer.css'
 //* Components
-// import ProductData from '../../../../data.json'
 import { useEffect } from 'react'
 import Product from '../../../Components/ProductCard/Product.jsx'
+import { useProductList } from '../../../context/product.context.jsx'
 import useApi from '../../../util/useApi.jsx'
 import MFilter from '../Filter/MFilter.jsx'
 
@@ -11,30 +11,40 @@ import MFilter from '../Filter/MFilter.jsx'
 
 export default function ProductContainer() {
 
-  const [productData, setProductData] = useState([])
+  const { productList, setProductList, setPage, page } = useProductList();
   const { fatchAllProducts } = useApi();
 
+  //* Fatch more products
+  const loadmoreProductsHandler = async () => {
+    setPage(pre => pre + 1);
+    const response = await fatchAllProducts({ page: page + 1 });
+    console.log(response);
+    if (response) {
+      setProductList((prevList) => [...prevList, ...response]);
+    }
+  }
   //* Fatching products
   useEffect(() => {
 
     const fetchData = async () => {
-      const response = await fatchAllProducts();
+      const response = await fatchAllProducts({});
       console.log(response);
       if (response) {
-        setProductData(response);
+        setProductList(response);
       }
     }
+    if(productList.length === 0) {
+      fetchData();
+    }
+  }, [])
 
-    fetchData();
-  },[])
-  
   return (
     <div className='products'>
       <div className="products-headline">Popular Product</div>
       <MFilter />
       <div className="products-group-conatiner">
         <div className="products-group">
-          {productData.map((product) => (
+          {productList.map((product) => (
             <Product
               key={product._id}
               id={product._id}
@@ -45,10 +55,10 @@ export default function ProductContainer() {
           ))}
         </div>
         <div className="loadmore">
-          loadmore...
+          <button className='loadmore-btn' onClick={() => { loadmoreProductsHandler() }}>Loadmore</button>
+          <div className='separator'></div>
         </div>
       </div>
-
     </div>
 
   )
