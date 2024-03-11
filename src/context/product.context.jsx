@@ -1,23 +1,16 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
+import useApi from '../util/useApi';
 
 const ProductContext = createContext([]);
 
 const ProductProvider = ({ children }) => {
 
     const [productList, setProductList] = useState([]);
-    const [query, setQuery] = useState({
-        page: 1,
-        categorie: "",
-        brand: "",
-    });
-    useEffect(() => {
-
-        console.log("query is runing")
-
-      },[query])
+    const [page, setPage] = useState(1)
+    
     
     return (
-        <ProductContext.Provider value={{ productList, setProductList, query, setQuery }}>
+        <ProductContext.Provider value={{ productList, setProductList, page, setPage }}>
             {children}
         </ProductContext.Provider>
     )
