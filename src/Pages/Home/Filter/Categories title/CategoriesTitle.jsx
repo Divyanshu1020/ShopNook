@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import { MdOutlineExpandMore } from "react-icons/md";
 import Options from './Options';
+import { useProductList } from '../../../../context/product.context';
 
 export default function CategoriesTitle(props) {
   const { title, options } = props
+  const { setQuery } = useProductList()
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [apiCalled, setApiCalled] = useState("");
   const [isChecked, setIsChecked] = useState("");
@@ -17,10 +19,9 @@ export default function CategoriesTitle(props) {
     setIsChecked(event.target.value)
   }
   const handleClear = () => {
-    //* Clear "apiCalled" ( preventing multiple calls) and "isChecked"
     setIsChecked("");
-    setApiCalled("")
-    
+    setApiCalled("")  //* Clear "apiCalled" ( preventing multiple calls)
+    setQuery(pre => (pre.title = ""))
   };
 
   return (
