@@ -4,7 +4,6 @@ import './ProductDetail.css';
 //* Icons 
 import { BiLike } from 'react-icons/bi';
 import { FaCartPlus, FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { useWishlist } from '../../context/wishlist.context.jsx';
 //* Helper functions
 import { useParams } from 'react-router-dom';
 import { convertInPricrFormate } from '../../helper/convertInPriceFormat.js';
@@ -13,7 +12,6 @@ import useUpdateContext from '../../util/useUpdateContext.jsx';
 
 import { IoAlertCircleOutline } from "react-icons/io5";
 import { BsSearch } from 'react-icons/bs';
-import { useUser } from '../../context/user.context.jsx';
 
 
 export default function ProductDetail() {

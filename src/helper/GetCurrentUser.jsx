@@ -19,7 +19,6 @@ export default function GetCurrentUser() {
                     setCartLength(response.data.user.cart.length);
                     console.log('Api call fetchCurrentUser '); 
                 }
-
             } catch (err) {
                 console.warn("Error fetching current user:", err);
             } finally {
