@@ -11,13 +11,13 @@ import MFilter from '../Filter/MFilter.jsx'
 
 export default function ProductContainer() {
 
-  const { productList, setProductList, setPage, page } = useProductList();
+  const { productList, setProductList, setPage, page, query } = useProductList();
   const { fatchAllProducts } = useApi();
 
   //* Fatch more products
   const loadmoreProductsHandler = async () => {
     setPage(pre => pre + 1);
-    const response = await fatchAllProducts({ page: page + 1 });
+    const response = await fatchAllProducts(page + 1, query);
     console.log(response);
     if (response) {
       setProductList((prevList) => [...prevList, ...response]);
@@ -27,7 +27,7 @@ export default function ProductContainer() {
   useEffect(() => {
 
     const fetchData = async () => {
-      const response = await fatchAllProducts({});
+      const response = await fatchAllProducts(1, {});
       console.log(response);
       if (response) {
         setProductList(response);

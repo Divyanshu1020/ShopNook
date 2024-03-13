@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
-
-
-
-//icons
 import { MdOutlineExpandMore } from "react-icons/md";
 import Options from './Options';
 
@@ -20,7 +16,13 @@ export default function CategoriesTitle(props) {
   const handleChange = (event) => {
     setIsChecked(event.target.value)
   }
-  
+  const handleClear = () => {
+    //* Clear "apiCalled" ( preventing multiple calls) and "isChecked"
+    setIsChecked("");
+    setApiCalled("")
+    
+  };
+
   return (
     <List className="select-categories" >
       <div className="selectBT" onClick={() => { handleDropdownToggle() }}>
@@ -39,7 +41,7 @@ export default function CategoriesTitle(props) {
             isChecked={isChecked}
           />
         ))}
-        <button onClick={()=> {setIsChecked(""); setApiCalled("")}}>clear</button>
+        <button onClick={() => { handleClear() }}>clear</button>
       </ul>
     </List>
   )

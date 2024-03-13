@@ -1,29 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 import useApi from '../../../../util/useApi';
+import { useProductList } from '../../../../context/product.context';
 
 
 export default function Options(props) {
-  const { option, title, setApiCalled, apiCalled, handleChange, isChecked } = props
-  const {fatchAllProducts} = useApi()
+  const { option , title, setApiCalled, apiCalled, handleChange, isChecked } = props
+  const {setQuery, setPage} = useProductList()
 
   //* Make API call here
   const handleRadioClick = (value) => {
     if (value !== apiCalled) {
 
-      
-      if (title === "Products"){
-        fatchAllProducts({categorie : value})
-      }
+      const newQuery = {};
+      newQuery[title.toLowerCase()] = value;
+      setQuery(prevQuery => ({ ...prevQuery, ...newQuery }));
+      setPage(1);
 
-      if(title === "Brands"){
-        fatchAllProducts({brand : value})
-      }
-
-
-
-        //* This thing help me to prevent second call 
-        setApiCalled(value);
+      //* This thing help me to prevent second call 
+      setApiCalled(value);
     }
   };
   return (

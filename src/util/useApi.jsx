@@ -2,12 +2,11 @@ import React from 'react';
 
 import axios from 'axios';
 import { useUser } from '../context/user.context';
-import { useProductList } from '../context/product.context';
 
 export default function useApi() {
 
   const { user } = useUser()
-  const { query } = useProductList()
+
 
   const debounce = (func, delay) => {
     let timeoutId;
@@ -107,26 +106,20 @@ export default function useApi() {
   }
 
 
-  const fatchAllProducts = async () => {
-    // ?page=${query.page}&categorie=${query.categorie}&band=${query.band}
+  const fatchAllProducts = async (page, query) => {
 
-
-    let page = query.page ? query.page : 1
     let url = `http://localhost:8000/api/v1/products?page=${page}`
 
-    if (query.categorie) {
-      console.log("caling api", query.categorie);
-      return
-      // url += `&categorie=${query.categorie}`
+    if (query.products) {
+      url += `&category=${query.products}`
+    }
+    if (query.brands) {
+      url += `&brand=${query.brands}`
     }
 
-    if (query.brand) {
-      console.log("calling", query.brand);
-      return
-      // url += `&brand=${query.brand}`
-    }
+    console.log(url);
 
-    console.log(page);
+
     try {
       const response = await axios.get(
         url,

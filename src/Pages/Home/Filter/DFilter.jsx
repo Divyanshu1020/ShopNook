@@ -7,23 +7,23 @@ export default function Filter() {
     {
       id: "Cat1",
       title: "Products",
-      options: ["Laptop", "Phone", "Earbuds/Headphones", "SmartWatch", "PCs", "TV", "Monitor", "Console"]
+      options: ["Laptops", "Smartphones", "Earbuds/Headphones", "SmartWatch", "PCs", "TV", "Monitor", "Console"]
     },
     {
       id: "Cat4",
       title: "Brands",
       options: ["Apple", "Motorola", "BLU", "OnePlus"]
     },
-    {
-      id: "Cat2",
-      title: "Prices",
-      options: ["₹ 10000 to ₹ 20000", "₹ 20000 to ₹ 40000", "₹ 40000 to ₹ 70000", "₹ 70000 to ₹ 100000", "₹ 150000 to ₹ 200000", "₹ 200000   & above"]
-    },
-    {
-      id: "Cat3",
-      title: "Condition",
-      options: ["New", "Old"]
-    },
+    // {
+    //   id: "Cat2",
+    //   title: "Prices",
+    //   options: ["₹ 10000 to ₹ 20000", "₹ 20000 to ₹ 40000", "₹ 40000 to ₹ 70000", "₹ 70000 to ₹ 100000", "₹ 150000 to ₹ 200000", "₹ 200000   & above"]
+    // },
+    // {
+    //   id: "Cat3",
+    //   title: "Condition",
+    //   options: ["New", "Old"]
+    // },
 
   ])
   return (
@@ -39,14 +39,14 @@ export default function Filter() {
           title={categories[1].title}
           options={categories[1].options}
         />
-        <CategoriesTitle
+        {/* <CategoriesTitle
           title={categories[2].title}
           options={categories[2].options}
         />
         <CategoriesTitle
           title={categories[3].title}
           options={categories[3].options}
-        />
+        /> */}
       </Categories>
     </Container>
   )
