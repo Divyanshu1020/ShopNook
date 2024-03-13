@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import useApi from '../../../../util/useApi';
 import { useProductList } from '../../../../context/product.context';
 
 
 export default function Options(props) {
-  const { option , title, setApiCalled, apiCalled, handleChange, isChecked } = props
-  const {setQuery, setPage} = useProductList()
+  const { option, title, setApiCalled, apiCalled, handleChange, isChecked } = props
+  const { setQuery, setPage } = useProductList()
 
   //* Make API call here
   const handleRadioClick = (value) => {
@@ -50,7 +49,8 @@ const ListOption = styled.li`
       align-items: center;
       height: 30px;
       /* box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15); */
-
+      border-radius: 5px;
+      
       &:hover{
         background: rgba(0, 0, 0, 0.08);
       }
@@ -63,13 +63,16 @@ const ListOption = styled.li`
         color: #333;
         width: 100%;
         height: 100%;
-        
+        padding: 0 5px;
+        cursor: pointer;
       }
       input{
         display: none;
         &:checked ~ label {
         color: black; // Change color when checkbox is checked
         background: rgba(0, 0, 0, 0.08);
+        border-radius: 5px;
+
       }
        
       }

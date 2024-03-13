@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import styled from 'styled-components';
+import React, { useState } from 'react';
 import { MdOutlineExpandMore } from "react-icons/md";
-import Options from './Options';
+import styled from 'styled-components';
 import { useProductList } from '../../../../context/product.context';
+import Options from './Options';
 
 export default function CategoriesTitle(props) {
   const { title, options } = props
@@ -42,7 +42,13 @@ export default function CategoriesTitle(props) {
             isChecked={isChecked}
           />
         ))}
-        <button onClick={() => { handleClear() }}>clear</button>
+        <li className='clear-li'>
+          <label>
+            <span>
+              <button className='clear-btn' onClick={() => { handleClear() }}>Clear</button>
+            </span>
+          </label>
+        </li>
       </ul>
     </List>
   )
@@ -94,4 +100,21 @@ const List = styled.div`
     border: none;
     
   }
+  .clear-li{
+    list-style: none;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    .clear-btn{
+      padding: 1px 8px;
+      border: 1px solid #d1d6e0;
+      border-radius: 0.5rem;
+      margin-left : auto;
+      cursor: pointer;
+      background : transparent;
+      font-size: 1rem;
+      color: #333;
+    }
+  }
+  
 `
