@@ -1,143 +1,109 @@
-// @ts-ignore
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
+
+//* Services
+import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
+//* Context
 import { useUser } from '../../context/user.context';
 
-// Icons
+//* Icons
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { useCart } from '../../context/cart.context';
 
 export default function Login() {
-    const [errorMessage, seteErrorMessage] = useState('');
-    const [buttonDisable, setButtonDisable] = useState(false);
-    const inputValue = useRef([]);
+
+    const { setUser, setCartLength } = useUser();
     const navigate = useNavigate()
 
-    const { setUser } = useUser();
-    const { setCartLength } = useCart();
+    const schema = z.object({
+        email: z.string().email(),
+        password: z.string().min(1, {message : "Please enter your password"})
+      });
 
+    const {
+        register,
+        handleSubmit,
+        setFocus,
+        setError,
+        formState: { errors, isSubmitting }
+    } = useForm(
+        {
+            defaultValues: {
+                email: "test123@gmail.com",
+                password: "test123"
+            },
+            resolver: zodResolver(schema),
+        }
+    );
+    //* set focus on email 
     useEffect(() => {
-        inputValue.current[0].focus();
-    }, [])
+        setFocus("email");
+    }, [setFocus]);
 
-
-
-    const handleKeyPress = (event, index) => {
-
-        if (event.key === 'Enter') {
-            event.preventDefault();
-
-            const nextIndex = index + 1;
-
-            if (nextIndex < inputValue.current.length) {
-                // If there is a next input, focus on it
-                inputValue.current[nextIndex].focus();
-            } else {
-                // If it's the last input, blur the current input
-                inputValue.current[index].blur();
-                loginHandler(event);
-            }
-        }
-
-        if (event.key === 'Backspace') {
-            const preIndex = index - 1;
-            if (index > 0 && inputValue.current[index].value === "") {
-                inputValue.current[preIndex].focus();
-            }
-
-        }
-    };
-
-    async function loginHandler(e) {
-        e.preventDefault();
-        seteErrorMessage('')
-
-        const email = inputValue.current[0]?.value;
-        const password = inputValue.current[1]?.value;
-        console.log(email, password);
-
-
-        // @ts-ignore
-
-
-        if (!email || !password) {
-            seteErrorMessage('Please enter a valid email and password');
-            return
-        }
-
-
+    const onSubmit = async (data) => {
         try {
-            
-            setButtonDisable(true);
-
             await axios
-                .post('http://localhost:8000/api/v1/users/login', { email: email, password: password },{ withCredentials: true })
+                .post('http://localhost:8000/api/v1/users/login', data, { withCredentials: true })
                 .then((response) => {
                     setUser(response.data.user);
                     setCartLength(response.data.user.cart.length);
                     navigate('/')
                     console.log(response.data);
-
                 })
-
         } catch (error) {
-            console.log(error.message);
-            seteErrorMessage(error.message)
-            setButtonDisable(false);
+            setError("root", { message: error.message })
         }
-
-        setButtonDisable(false)
     }
-    return (
-        <Background>
-            <div className='back-to-home'>
-                <Link to='/' >
-                    <IoIosArrowRoundBack className='arrow' /> Back to home
-                </Link>
-            </div>
-            <Container>
-                <span className="input-hader">Welcome back!</span>
+ return (
+    <Background>
+        <div className='back-to-home'>
+            <Link to='/' >
+                <IoIosArrowRoundBack className='arrow' /> Back to home
+            </Link>
+        </div>
+        <Container>
+            <span className="input-hader">Welcome back!</span>
 
-                <form onSubmit={(e) => { loginHandler(e) }}>
+            <form onSubmit={handleSubmit(onSubmit)}>
 
-                    <div className='inputs'>
+                <div className='inputs'>
+                    <div className='input'>
+                        {errors.email && <div className='input-error'>{`${errors.email.message}`}</div>}
                         <input
-                            // @ts-ignore
-                            ref={(e) => (inputValue.current[0] = e)}
-                            onKeyDown={(e) => handleKeyPress(e, 0)}
-                            className='input'
-                            type="text"
-                            placeholder='Email'
-                            disabled={buttonDisable}
+                            type="email"
+                            placeholder="Email"
+                            disabled={isSubmitting}
+                            {...register("email")}
                         />
+                    </div>
+                    <div className='input'>
+                        {errors.password && <div className='input-error'>{`${errors.password.message}`}</div>}
                         <input
-                            className='input'
                             type="password"
                             placeholder='Password'
-                            // @ts-ignore
-                            ref={(e) => (inputValue.current[1] = e)}
-                            onKeyDown={(e) => handleKeyPress(e, 1)}
-                            disabled={buttonDisable}
+                            disabled={isSubmitting}
+                            {...register("password")}
                         />
                     </div>
-
-                    <div className='forget'><Link to={'/forgetPassword'}>Forget your password?</Link></div>
-                    <div className='signBTN'>
-                        <button
-                            className="sign"
-                            onClick={(e) => { loginHandler(e) }}
-                            type='submit'
-                            disabled={buttonDisable}
-                        >Login</button>
-                        <p className="signup-link">Not registered? <Link to={'/signup'}>Creat account</Link></p>
-                        <p className='error'>{errorMessage}</p>
-                    </div>
-                </form>
-            </Container >
-        </Background >
-    )
+                </div>
+                <div className='forget'><Link to={'/forgetPassword'}>Forget your password?</Link></div>
+                <div className='form-bottom'>
+                    <button
+                        className="sign"
+                        type='submit'
+                        disabled={isSubmitting}
+                    >{isSubmitting ? "Submitting" : "Submit"}</button>
+                    <p className="signup-link">Not registered? <Link to={'/signup'}>Creat account</Link></p>
+                    <p className='error'>{errors.root?.message}</p>
+                </div>
+            </form>
+        </Container >
+    </Background >
+)
 }
 
 const Background = styled.div`
@@ -197,17 +163,26 @@ const Container = styled.div`
             display: flex;
             flex-direction: column; 
             gap: 1.5rem;
-            input{
-                padding: 1rem;
-                border-radius: 0.5rem;
-                border-style: none;
-                background: #F4F4F4;
-                &::placeholder{
-                    color: #878787;
-                    font-size: large;
+            .input{
+                width: 100%;
+                display: flex;
+                flex-direction: column; 
+                input{
+                    padding: 1rem;
+                    border-radius: 0.5rem;
+                    border-style: none;
+                    background: #F4F4F4;
+                    &::placeholder{
+                        color: #878787;
+                        font-size: large;
+                    }
+                }
+                .input-error{
+                    color : red;
                 }
             }
         }
+        
         .forget{
             margin: 1.5rem;
             text-align: start;
@@ -218,7 +193,7 @@ const Container = styled.div`
                 color: #878787;
             }
         }
-        .signBTN{
+        .form-bottom{
             width:100%;
             display: flex;
             flex-direction: column;

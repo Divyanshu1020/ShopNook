@@ -1,14 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { IoIosArrowRoundBack } from 'react-icons/io';
+import React, { useEffect, useState } from 'react';
+//* Services
 import { Link } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
+import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+
+//* Icon
+import { IoIosArrowRoundBack } from 'react-icons/io';
 
 export default function Signup() {
-    const [buttonDisable, setButtonDisable] = useState(false);
-    const [avatarUrl, setAvatarUrl] = useState("https://w7.pngwing.com/pngs/49/497/png-transparent-biology-management-major-learning-research-user-miscellaneous-angle-company.png");
+    const [avatarUrl, setAvatarUrl] = useState("https://res.cloudinary.com/dnq2kbsta/image/upload/v1710539353/assets/l3mestfke7cpfoaq2y8r.png");
 
-
-    const inputValue = useRef([]);
 
     const onImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
@@ -16,35 +19,63 @@ export default function Signup() {
           const selected = URL.createObjectURL(file);
           setAvatarUrl(selected);
         }
-      };
-
-    useEffect(() => {
-        inputValue.current[0].focus();
-    }, [])
-    const handleKeyPress = (event, index) => {
-        console.log(event.key);
-        if (event.key === 'Enter') {
-            event.preventDefault();
-
-            const nextIndex = index + 1;
-
-            if (nextIndex < inputValue.current.length) {
-                // If there is a next input, focus on it
-                inputValue.current[nextIndex].focus();
-            } else {
-                // If it's the last input, submit the form
-                loginHandler(event);
-            }
-        }
-
-        if (event.key === 'Backspace') {
-            const preIndex = index - 1;
-            if (index > 0 && inputValue.current[index].value === "") {
-                inputValue.current[preIndex].focus();
-            }
-
-        }
     };
+
+    const schema = z.object({
+        name : z.string().min(1, {message : "Please enter your password"}),
+        email: z.string().email(),
+        password: z.string().min(1, {message : "Please enter your password"})
+      });
+
+    const {
+        register,
+        handleSubmit,
+        setFocus,
+        setError,
+        formState: { errors, isSubmitting }
+    } = useForm(
+        {
+            resolver: zodResolver(schema),
+        }
+    );
+
+    const onSubmit = async (data) => {
+        try {
+            console.log(data);
+        } catch (error) {
+            setError("root", { message: error.message })
+        }
+    }
+
+    //* set focus on name 
+    useEffect(() => {
+        setFocus("name");
+    }, [setFocus]);
+
+    // const handleKeyPress = (event, index) => {
+    //     console.log(event.key);
+    //     if (event.key === 'Enter') {
+    //         event.preventDefault();
+
+    //         const nextIndex = index + 1;
+
+    //         if (nextIndex < inputValue.current.length) {
+    //             // If there is a next input, focus on it
+    //             inputValue.current[nextIndex].focus();
+    //         } else {
+    //             // If it's the last input, submit the form
+    //             loginHandler(event);
+    //         }
+    //     }
+
+    //     if (event.key === 'Backspace') {
+    //         const preIndex = index - 1;
+    //         if (index > 0 && inputValue.current[index].value === "") {
+    //             inputValue.current[preIndex].focus();
+    //         }
+
+    //     }
+    // };
     return (
         <Background>
             <div className='back-to-home'>
@@ -55,13 +86,12 @@ export default function Signup() {
 
             <Container>
                 <span className="input-hader">Sign Up on ShopNook</span>
-                <form onSubmit={(e) => { console.log('e:', e) }}>
+                <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div className='inputs'>
                         <div className='avatar'>
                             <div className='avatar-img'>
                                 <input
-                                    // @ts-ignore
                                     className='avatar-input'
                                     type="file"
                                     onChange={(e)=>onImageChange(e)}
@@ -70,38 +100,43 @@ export default function Signup() {
                                 <img src={avatarUrl} />
                             </div>
                         </div>
-                        <input
-                            // @ts-ignore
-                            ref={(e) => (inputValue.current[0] = e)}
-                            onKeyDown={(e) => handleKeyPress(e, 0)}
-                            className='input'
-                            type="text"
-                            placeholder='Username'
-                        />
-                        <input
-                            // @ts-ignore
-                            ref={(e) => (inputValue.current[1] = e)}
-                            onKeyDown={(e) => handleKeyPress(e, 0)}
-                            className='input'
-                            type="email"
-                            placeholder='Email Address'
-                        />
-                        <input
-                            className='input'
-                            type="password"
-                            placeholder='Password'
-                            // @ts-ignore
-                            ref={(e) => (inputValue.current[2] = e)}
-                            onKeyDown={(e) => handleKeyPress(e, 1)}
-                        />
+
+                        <div className='input'>
+                            {errors.name && <div className='input-error'>{`${errors.name.message}`}</div>}
+                            <input
+                                type="text"
+                                placeholder='Your Name'
+                                disabled={isSubmitting}
+                                {...register("name")}
+                            />
+                        </div>
+
+                        <div className='input'>
+                            {errors.email && <div className='input-error'>{`${errors.email.message}`}</div>}
+                            <input
+                                type="email"
+                                placeholder='Email'
+                                disabled={isSubmitting}
+                                {...register("email")}
+                            />
+                        </div>
+
+                        <div className='input'>
+                            {errors.password && <div className='input-error'>{`${errors.password.message}`}</div>}
+                            <input
+                                type="password"
+                                placeholder='Password'
+                                disabled={isSubmitting}
+                                {...register("password")}
+                            />
+                        </div>
                     </div>
                     <div className='signBTN'>
-                        <button
-                            className="sign"
-                            onClick={(e) => { console.log('e:', e) }}
-                            type='submit'
-                            disabled={buttonDisable}
-                        >Login</button>
+                    <button
+                        className="sign"
+                        type='submit'
+                        disabled={isSubmitting}
+                    >{isSubmitting ? "Submitting" : "Submit"}</button>
                         <p className="linkp">Not registered? <Link to={'/signup'}>Creat account</Link></p>
                     </div>
                 </form>
@@ -178,13 +213,21 @@ const Container = styled.div`
             flex-direction: column; 
             gap: 1.5rem;
             .input{
-                padding: 1rem;
-                border-radius: 0.5rem;
-                border-style: none;
-                background: #F4F4F4;
-                &::placeholder{
-                    color: #878787;
-                    font-size: large;
+                width: 100%;
+                display: flex;
+                flex-direction: column; 
+                input{
+                    padding: 1rem;
+                    border-radius: 0.5rem;
+                    border-style: none;
+                    background: #F4F4F4;
+                    &::placeholder{
+                        color: #878787;
+                        font-size: large;
+                    }
+                }
+                .input-error{
+                    color : red;
                 }
             }
             .avatar{
