@@ -10,13 +10,15 @@ import styled from 'styled-components';
 
 //* Context
 import { useUser } from '../../context/user.context';
+import { useCart } from '../../context/cart.context';
 
 //* Icons
 import { IoIosArrowRoundBack } from "react-icons/io";
 
 export default function Login() {
 
-    const { setUser, setCartLength } = useUser();
+    const { setUser } = useUser();
+    const { setCartLength } = useCart()
     const navigate = useNavigate()
 
     const schema = z.object({
@@ -101,8 +103,8 @@ export default function Login() {
                     <p className='error'>{errors.root?.message}</p>
                 </div>
             </form>
-        </Container >
-    </Background >
+        </Container>
+    </Background>
 )
 }
 

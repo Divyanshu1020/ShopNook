@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+
+//* services
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import { useCart } from '../../../context/cart.context';
 import { convertInPricrFormate } from '../../../helper/convertInPriceFormat';
-import { Link } from 'react-router-dom';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 
 export default function Summary() {
@@ -13,12 +16,11 @@ export default function Summary() {
         let subtotal = 0;
         let totalItems = 0;
         cart.map((item) => {
-            subtotal = subtotal + (item.price * item.quantity)
-            totalItems = totalItems + item.quantity;
+            subtotal = subtotal + (item.productDetails.price * item.productQuantity)
+            totalItems = totalItems + item.productQuantity;
         })
-        setSubtotal(convertInPricrFormate(Number(subtotal.toFixed(2))))
+        setSubtotal(convertInPricrFormate(subtotal.toFixed(2)))
         setTotalItems(totalItems)
-
     }, [cart])
 
     return (
