@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export default function ListComponent(props) {
     const { description, price, thumbnail, quantity, deleteCartItems, id, index } = props;
-    const { setCart } = useCart()
+    const { setCart, setCartUpdate } = useCart()
     const [total, setTotal] = useState('')
     const [productQuantity, setProductQuantity] = useState(quantity)
     const [userProductQuantityInput, setUserProductQuantityInput] = useState(quantity)
@@ -16,66 +16,73 @@ export default function ListComponent(props) {
     useEffect(() => {
         const priceFormate = convertInPricrFormate(productQuantity * price);
         setTotal(priceFormate)
-        //* This update product quantity in cart context 
-        setCart((pre) => (
-            pre.map((item) => (
-                item.id === id ? { ...item, productQuantity: productQuantity } : item
+
+        //* This update product quantity in cart context and data base
+        const timeout = setTimeout(() => {
+            setCart((pre) => (
+                pre.map((item) => (
+                    item.productId === id ? { ...item, productQuantity: productQuantity } : item
+                ))
             ))
-        ))
-    }, [productQuantity, price, setCart, id])
 
-    //* Handler for submite product quantity
-    const submiteProductQuantity = (e) => {
-        e.preventDefault();
-        setProductQuantity(userProductQuantityInput);
-    }
+            setCartUpdate({ id: id, quantity: productQuantity })
+    }, 1000)
 
-    //* Handler for (-) Minus product quantity
-    const minusProductQuantity = () => {
-        setProductQuantity((pre) => (pre - 1))
-        setUserProductQuantityInput((pre) => (pre - 1))
-    }
+    return () => clearTimeout(timeout)
+}, [productQuantity, price, setCart, id])
 
-    //* Handler for (+) plus product quantity
-    const plusProductQuantity = () => {
-        setProductQuantity((pre) => (pre + 1))
-        setUserProductQuantityInput((pre) => (pre + 1))
-    }
+//* Handler for submite product quantity
+const submiteProductQuantity = (e) => {
+    e.preventDefault();
+    setProductQuantity(userProductQuantityInput);
+}
 
-    return (
-        <Container>
-            <Lift>
-                <div className='image'>
-                    <img src={thumbnail} alt="" />
-                </div>
-                <div className="title">
-                    <Link to={`/product/${id}`}><h4 className='name'>{description}</h4></Link>
-                    <h3 className='price'>{convertInPricrFormate(price)}</h3>
-                </div>
-            </Lift>
-            <Right>
-                <div className="quantity ">
-                    <span><FaMinus onClick={() => { minusProductQuantity() }} /></span>
-                    <form onSubmit={(e) => { submiteProductQuantity(e) }}><input
-                        type="text"
-                        value={userProductQuantityInput}
-                        onChange={(e) => { setUserProductQuantityInput(e.target.value) }}
-                        onBlur={() => { setUserProductQuantityInput(productQuantity) }}
-                    />
-                    </form>
-                    <span><FaPlus onClick={() => { plusProductQuantity() }} /></span>
-                </div>
+//* Handler for (-) Minus product quantity
+const minusProductQuantity = () => {
+    setProductQuantity((pre) => (pre - 1))
+    setUserProductQuantityInput((pre) => (pre - 1))
+}
 
-                <div className="price">
-                    <span >{total}</span>
-                </div>
-                <div>
-                    <MdDelete className='delete' onClick={() => { deleteCartItems(index, id) }} />
-                </div>
-            </Right>
+//* Handler for (+) plus product quantity
+const plusProductQuantity = () => {
+    setProductQuantity((pre) => (pre + 1))
+    setUserProductQuantityInput((pre) => (pre + 1))
+}
 
-        </Container>
-    )
+return (
+    <Container>
+        <Lift>
+            <div className='image'>
+                <img src={thumbnail} alt="" />
+            </div>
+            <div className="title">
+                <Link to={`/product/${id}`}><h4 className='name'>{description}</h4></Link>
+                <h3 className='price'>{convertInPricrFormate(price)}</h3>
+            </div>
+        </Lift>
+        <Right>
+            <div className="quantity ">
+                <span><FaMinus onClick={() => { minusProductQuantity() }} /></span>
+                <form onSubmit={(e) => { submiteProductQuantity(e) }}><input
+                    type="text"
+                    value={userProductQuantityInput}
+                    onChange={(e) => { setUserProductQuantityInput(e.target.value) }}
+                    onBlur={() => { setUserProductQuantityInput(productQuantity) }}
+                />
+                </form>
+                <span><FaPlus onClick={() => { plusProductQuantity() }} /></span>
+            </div>
+
+            <div className="price">
+                <span >{total}</span>
+            </div>
+            <div>
+                <MdDelete className='delete' onClick={() => { deleteCartItems(index, id) }} />
+            </div>
+        </Right>
+
+    </Container>
+)
 }
 const Container = styled.div`
     border-bottom:  2px solid rgb(209, 214, 224);
