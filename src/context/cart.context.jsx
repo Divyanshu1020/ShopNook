@@ -1,21 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createContext, useContext, useState } from "react";
-import useApi from '../util/useApi';
+import useApi from '../hooks/useApi';
 const CartContext = createContext()
 
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([])
     const [cartUpdate, setCartUpdate] = useState()
     const [cartLength, setCartLength] = useState(0);
-
+    const initialRender = useRef(true);
     const { cartUpdateApi } = useApi();
 
     useEffect(() => {
         //* This prevents api call in fast loading
-        const timeout = setTimeout(async () => {
-            cartUpdateApi(cartUpdate);
-        }, 1000)
-        return () => clearTimeout(timeout);
+        if (!initialRender.current) {
+            const timeout = setTimeout(async () => {
+                cartUpdateApi(cartUpdate);
+            }, 1000)
+            return () => clearTimeout(timeout);
+        } else {
+            initialRender.current = false;
+        }
 
     }, [cartUpdate, cartUpdateApi])
 

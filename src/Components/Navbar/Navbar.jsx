@@ -8,8 +8,8 @@ import { FaRegUser } from "react-icons/fa";
 import { ImSearch } from "react-icons/im";
 
 //* Component/Pages
-import Search from './Search/Search';
 import Menu from './Menu/Menu';
+import Search from './Search/Search';
 
 //* context
 import { useCart } from '../../context/cart.context';
@@ -21,12 +21,10 @@ export default function Navbar() {
 
   const [navbarScroll, setNavbarScroll] = useState(false)
   const [searchShow, setSearchShow] = useState(false);
-  const [menuShow, setMenuShow] = useState(false)
 
   const { cartLength } = useCart()
   const { user } = useUser()
 
-  const navigate = useNavigate();
 
   const navbarScrollHandler = () => {
     const offset = window.scrollY;
@@ -48,7 +46,7 @@ export default function Navbar() {
               <ul className='left-link'>
                 <li className='left-link-li'><Link to='/'>Home</Link></li>
                 <li className='left-link-li'><Link to=' '>About</Link></li>
-                <li className='left-link-li dropdown'>
+                {/* <li className='left-link-li dropdown'>
                   Categories
                   <div className="dropdown-content" >
 
@@ -72,7 +70,7 @@ export default function Navbar() {
                     </Link>
 
                   </div>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="logo"><Link to='/'>ShopNook</Link></div>
@@ -83,23 +81,32 @@ export default function Navbar() {
               />
               {user ?
                 (<>
-                  <Link to= '/wishlist'>
+                  <Link className='right-link' to='/wishlist'>
                     <BiLike className='right-icon' />
                   </Link>
-                  <Link to='/cart'>
+                  <Link className='right-link' to='/cart'>
                     <span className='cart-icon'>
                       <BiCart className='right-icon' />
                       <span>{cartLength}</span>
                     </span>
                   </Link>
-                  <FaRegUser className='right-icon user-icon'
-                    onClick={() => setMenuShow(true)}
-                  />
+                  <div className=' right-link dropdown '>
+                    <FaRegUser className='right-icon user-icon ' />
+                    <div className="user-dropdown-content" >
+
+                      <Link to='/category/Bluetooth Speaker' >
+                        something
+                      </Link>
+                      <Link to='/category/Bluetooth Speaker' >
+                        somethinh
+                      </Link>
+                    </div>
+                  </div>
                 </>) :
                 (
                   <>
-                    <Link to='/login'>Login</Link>
-                    <Link to='/signup'> <button className='SingUp'>SignUp</button> </Link>
+                    <Link className=' right-link' to='/login'>Login</Link>
+                    <Link className=' right-link' to='/signup'> <button className='SingUp'>SignUp</button> </Link>
                   </>
                 )
               }
@@ -110,7 +117,6 @@ export default function Navbar() {
 
       {/** Sliding Window  */}
       {searchShow && <Search setSearchShow={setSearchShow} />}
-      {menuShow && <Menu setMenuShow={setMenuShow} />}
     </>
   )
 }

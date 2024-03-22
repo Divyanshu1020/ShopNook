@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 //* services
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
+import { IoIosArrowRoundBack } from 'react-icons/io';
 import { useCart } from '../../../context/cart.context';
 import { convertInPricrFormate } from '../../../helper/convertInPriceFormat';
-import { IoIosArrowRoundBack } from 'react-icons/io';
 
 export default function Summary() {
     const [subtotal, setSubtotal] = useState(0);
@@ -15,13 +15,13 @@ export default function Summary() {
     useEffect(() => {
         let subtotal = 0;
         let totalItems = 0;
-        cart.map((item) => {
-            subtotal = subtotal + (item.productDetails.price * item.productQuantity)
-            totalItems = totalItems + item.productQuantity;
-        })
-        setSubtotal(convertInPricrFormate(subtotal.toFixed(2)))
-        setTotalItems(totalItems)
-    }, [cart])
+        cart.forEach((item) => {
+            subtotal += item.productDetails.price * item.productQuantity;
+            totalItems += item.productQuantity;
+        });
+        setSubtotal(convertInPricrFormate(subtotal));
+        setTotalItems(totalItems);
+    }, [cart]);
 
     return (
         <Background>
@@ -35,17 +35,18 @@ export default function Summary() {
                     <h2>Quantity</h2>
                     <h3>{totalItems}</h3>
                 </div>
-                <div className="outButtons">
-                    <div className='ContinueShopping' >
-                        <Link to='/' >
-                            <IoIosArrowRoundBack className='arrow' /> Continue Shopping
-                        </Link>
-                    </div>
-                    <div className='checkout'>
-                        <button>CheckOut</button>
-                    </div>
-                </div>
+
             </Container>
+            <div className="outButtons">
+                <div className='ContinueShopping' >
+                    <Link to='/' >
+                        <IoIosArrowRoundBack className='arrow' /> Continue Shopping
+                    </Link>
+                </div>
+                <div className='checkout'>
+                    <button>CheckOut</button>
+                </div>
+            </div>
         </Background>
     )
 }
@@ -66,22 +67,8 @@ const Background = styled.div`
     @media only screen and (max-width: 640px){
         width: calc(100% - 1rem);
     }
-`
-const Container = styled.div`
-    margin-top: 1rem;
-    .total{
-        margin: 1rem ;
-        display: flex;
-        justify-content: space-between;
-        h2{
-            font-weight: 300;
-        }
-        h3{
-            font-weight: 100;
-        }
-    }
+
     .outButtons{
-        margin: 1rem;
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -101,7 +88,7 @@ const Container = styled.div`
                 align-items: center;
                 text-decoration: none;
                 color: #878787;
-                font-size: 25px;
+                font-size: 30px;
             }
         }
         .checkout{
@@ -123,4 +110,19 @@ const Container = styled.div`
         }
         
     }
+`
+const Container = styled.div`
+    margin-top: 1rem;
+    .total{
+        margin: 1rem ;
+        display: flex;
+        justify-content: space-between;
+        h2{
+            font-weight: 300;
+        }
+        h3{
+            font-weight: 100;
+        }
+    }
+    
 `

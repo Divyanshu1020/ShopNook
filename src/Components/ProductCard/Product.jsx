@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { convertInPricrFormate } from '../../helper/convertInPriceFormat';
+import useUpdateContext from '../../hooks/useUpdateContext';
 import './Product.css';
-import useUpdateContext from '../../util/useUpdateContext';
 
 
 export default function Product({ title, description, price, thumbnail, id }) {
 
-  const {updateCart} = useUpdateContext()
+  const { updateCart } = useUpdateContext()
 
   const addToCart = function () {
     const newItem = {
