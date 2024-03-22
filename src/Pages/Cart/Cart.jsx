@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useCart } from '../../context/cart.context'
+import useApi from '../../hooks/useApi'
 import CartIsEmpty from './CartIsEmpty/CartIsEmpty'
 import CartItems from './CartItems/CartItems'
 import Summary from './Summary/Summary'
-import useApi from '../../util/useApi'
 
 
 export default function Cart() {
@@ -19,8 +19,8 @@ export default function Cart() {
             if (response) {
                 setCart(response);
             }
-        }  
-        if ( cartLength > cart.length ) fetchData();
+        }
+        if (cartLength > cart.length) fetchData();
     }, [])
 
     return (

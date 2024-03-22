@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useCart } from '../../../context/cart.context'
+import useApi from '../../../hooks/useApi'
 import ListComponent from './ListComponent'
-import useApi from '../../../util/useApi'
 
 export default function CartItems() {
     const { cart, setCart, setCartLength } = useCart()  //* cart context

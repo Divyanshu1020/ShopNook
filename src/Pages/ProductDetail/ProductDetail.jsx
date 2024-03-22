@@ -7,11 +7,11 @@ import { FaCartPlus, FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "rea
 //* Helper functions
 import { useParams } from 'react-router-dom';
 import { convertInPricrFormate } from '../../helper/convertInPriceFormat.js';
-import useApi from '../../util/useApi.jsx';
-import useUpdateContext from '../../util/useUpdateContext.jsx';
+import useApi from '../../hooks/useApi.jsx';
+import useUpdateContext from '../../hooks/useUpdateContext.jsx';
 
-import { IoAlertCircleOutline } from "react-icons/io5";
 import { BsSearch } from 'react-icons/bs';
+import { IoAlertCircleOutline } from "react-icons/io5";
 
 
 export default function ProductDetail() {

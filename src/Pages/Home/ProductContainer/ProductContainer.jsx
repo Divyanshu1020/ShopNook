@@ -4,7 +4,7 @@ import './ProductContainer.css'
 import Loading from '../../../Components/Loading.jsx'
 import Product from '../../../Components/ProductCard/Product.jsx'
 import { useProductList } from '../../../context/product.context.jsx'
-import useApi from '../../../util/useApi.jsx'
+import useApi from '../../../hooks/useApi.jsx'
 import MFilter from '../Filter/MFilter.jsx'
 import NoProducts from '../../../Components/UI/NoProducts.jsx'
 
