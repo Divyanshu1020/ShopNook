@@ -14,6 +14,7 @@ import Search from './Search/Search';
 //* context
 import { useCart } from '../../context/cart.context';
 import { useUser } from '../../context/user.context';
+import DropBox from '../DropBox/DropBox';
 
 
 
@@ -46,31 +47,9 @@ export default function Navbar() {
               <ul className='left-link'>
                 <li className='left-link-li'><Link to='/'>Home</Link></li>
                 <li className='left-link-li'><Link to=' '>About</Link></li>
-                {/* <li className='left-link-li dropdown'>
+                <li className='left-link-li'>
                   Categories
-                  <div className="dropdown-content" >
-
-                    <Link to='/category/Bluetooth Speaker' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to='/category' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to='/category' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to='/category' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to='/category' >
-                      Bluetooth Speaker
-                    </Link>
-                    <Link to='/category' >
-                      Bluetooth Speaker
-                    </Link>
-
-                  </div>
-                </li> */}
+                </li>
               </ul>
             </div>
             <div className="logo"><Link to='/'>ShopNook</Link></div>
@@ -84,24 +63,19 @@ export default function Navbar() {
                   <Link className='right-link' to='/wishlist'>
                     <BiLike className='right-icon' />
                   </Link>
+
                   <Link className='right-link' to='/cart'>
                     <span className='cart-icon'>
                       <BiCart className='right-icon' />
                       <span>{cartLength}</span>
                     </span>
                   </Link>
+
                   <div className=' right-link dropdown '>
                     <FaRegUser className='right-icon user-icon ' />
-                    <div className="user-dropdown-content" >
-
-                      <Link to='/category/Bluetooth Speaker' >
-                        something
-                      </Link>
-                      <Link to='/category/Bluetooth Speaker' >
-                        somethinh
-                      </Link>
-                    </div>
+                    <DropBox/>
                   </div>
+
                 </>) :
                 (
                   <>
