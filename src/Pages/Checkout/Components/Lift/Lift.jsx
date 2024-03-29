@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import Email from './Email/Email'
 
 export default function Lift() {
     return (
         <Container>
-            <div className="box">1</div>
+            <Email/>
             <div className="box">1</div>
             <div className="box">1</div>
         </Container>
@@ -23,7 +24,6 @@ const Container = styled.div`
     }
     .box{
         border-radius: 0.7rem;
-        min-height: 200px;
         background-color: white;
     }
 `

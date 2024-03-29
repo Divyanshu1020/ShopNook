@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import getUser from '../../hooks/useGetCurrentUser'
 import './Navbar.css';
 
 //* Icons
@@ -8,7 +9,6 @@ import { FaRegUser } from "react-icons/fa";
 import { ImSearch } from "react-icons/im";
 
 //* Component/Pages
-import Menu from './Menu/Menu';
 import Search from './Search/Search';
 
 //* context
@@ -22,6 +22,7 @@ export default function Navbar() {
 
   const [navbarScroll, setNavbarScroll] = useState(false)
   const [searchShow, setSearchShow] = useState(false);
+  getUser()
 
   const { cartLength } = useCart()
   const { user } = useUser()

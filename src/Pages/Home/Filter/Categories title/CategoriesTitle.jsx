@@ -105,7 +105,11 @@ const List = styled.div`
     height: 30px;
     display: flex;
     justify-content: center;
+    label{
+      width: 100%;
+    }
     .clear-btn{
+      width: 100%;
       padding: 1px 8px;
       border: 1px solid #d1d6e0;
       border-radius: 0.5rem;

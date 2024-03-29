@@ -5,7 +5,7 @@ export default function PromoCode() {
     return (
         <Container>
             <form>
-                <input type="text" placeholder='Gift or promo code' />
+                <input type="text" maxLength={20} placeholder='Gift or promo code' />
                 <button disabled={true}>APPLY</button>
             </form>
         </Container>

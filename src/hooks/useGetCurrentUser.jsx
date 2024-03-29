@@ -1,14 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import App from '../App';
+import React, { useEffect } from 'react';
 import { useCart } from '../context/cart.context';
 import { useUser } from '../context/user.context';
-import Loading from '../Components/Loading';
 
-export default function GetCurrentUser() {
+export default function useGetCurrentUser() {
     const { user, setUser } = useUser();
     const { setCartLength } = useCart();
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchCurrentUser = async () => {
@@ -21,8 +18,6 @@ export default function GetCurrentUser() {
                 }
             } catch (err) {
                 console.warn("Error fetching current user:", err);
-            } finally {
-                setLoading(false);
             }
         };  
 
@@ -30,6 +25,4 @@ export default function GetCurrentUser() {
         fetchCurrentUser();
 
     }, []);
-
-    return loading ? <Loading /> : <App />;
 }
